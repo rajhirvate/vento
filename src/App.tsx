@@ -26,6 +26,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import logo from './assets/logo.png';
+import heroVideo from './assets/hero.mov';
 
 // --- Components ---
 
@@ -274,7 +275,7 @@ const Hero2 = () => {
   );
 };
 
-const Hero = () => {
+const MainHero1 = () => {
   return (
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-slate-900 pt-32 pb-8">
       {/* Background Image */}
@@ -350,52 +351,814 @@ const Hero = () => {
   );
 };
 
+const HeroNew = () => {
+  const [activeSlide, setActiveSlide] = React.useState(0);
+  const [progress, setProgress] = React.useState(0);
+
+  const SLIDE_DURATION = 5000;
+  const TICK = 80;
+
+  const slides = [
+    {
+      label: 'AOG Services',
+      title: '24/7 Emergency Parts Dispatch',
+      desc: 'Round-the-clock dedicated team ready to source and ship critical components anywhere in the world within hours.',
+      img: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&q=80&w=1200',
+    },
+    {
+      label: 'Quality Assurance',
+      title: 'EASA & FAA Certified Supply Chain',
+      desc: 'Every component ships with complete documentation, full traceability, and certified airworthiness standards.',
+      img: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=1200',
+    },
+    {
+      label: 'Global Network',
+      title: 'Warehouses Across 4 Continents',
+      desc: 'Strategic locations in the US, Mexico, Argentina, and France for rapid regional delivery to any operator.',
+      img: 'https://images.unsplash.com/photo-1436491865332-7a61a109db56?auto=format&fit=crop&q=80&w=1200',
+    },
+  ];
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prev) => {
+        const next = prev + (TICK / SLIDE_DURATION) * 100;
+        if (next >= 100) {
+          setActiveSlide((s) => (s + 1) % slides.length);
+          return 0;
+        }
+        return next;
+      });
+    }, TICK);
+    return () => clearInterval(timer);
+  }, []);
+
+  const marqueeItems = [
+    'AS9120 Certified', 'ISO 9001:2015', 'FAA AC 00-56B', 'EASA Approved',
+    'Boeing', 'Airbus', 'Rolls-Royce', 'GE Aviation',
+    'CFM International', 'Pratt & Whitney', 'Honeywell', 'Collins Aerospace',
+  ];
+
+  return (
+    <section className="relative h-screen overflow-hidden bg-black">
+      {/* Video background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-30"
+        poster="https://images.unsplash.com/photo-1436491865332-7a61a109db56?auto=format&fit=crop&q=80&w=2000"
+      >
+        <source src="https://videos.pexels.com/video-files/2169880/2169880-hd_1920_1080_30fps.mp4" type="video/mp4" />
+      </video>
+
+      {/* Cinematic overlays */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,transparent,rgba(0,0,0,0.4))]" />
+
+      {/* Content */}
+      <div className="relative z-10 h-full flex flex-col">
+        <div className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid lg:grid-cols-12 gap-8 lg:gap-12 items-center pt-32 pb-8">
+          {/* Left — headline */}
+          <div className="lg:col-span-5">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/[0.06] border border-white/[0.08] backdrop-blur-sm rounded-full mb-10">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-white/70 text-[11px] font-bold uppercase tracking-[0.2em] font-corporate">Global Aviation Partner</span>
+              </div>
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.1 }}
+              className="text-5xl sm:text-6xl lg:text-[4.25rem] xl:text-[5rem] font-corporate font-bold text-white leading-[0.95] tracking-tight mb-8"
+            >
+              Connect,
+              <br />
+              protect &
+              <br />
+              explore{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-cyan-400">
+                our world.
+              </span>
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-white/40 text-lg leading-relaxed mb-10 max-w-md font-light"
+            >
+              Certified aerospace components delivered worldwide with speed, precision, and uncompromising quality.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="flex flex-wrap gap-4"
+            >
+              <a
+                href="#rfq"
+                className="group relative inline-flex items-center gap-3 bg-white text-black px-8 py-4 font-corporate font-bold text-xs uppercase tracking-[0.15em] overflow-hidden hover:shadow-2xl hover:shadow-white/10 transition-shadow"
+              >
+                <span className="relative z-10">Get Started</span>
+                <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 bg-blue-100 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              </a>
+              <a
+                href="#about"
+                className="group inline-flex items-center gap-3 px-8 py-4 font-corporate font-bold text-xs uppercase tracking-[0.15em] text-white/70 border border-white/10 hover:border-white/30 hover:text-white hover:bg-white/5 transition-all"
+              >
+                Our Story
+                <ChevronRight size={16} className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Right — auto-rotating feature carousel */}
+          <div className="lg:col-span-7 relative hidden lg:flex flex-col justify-center">
+            <motion.div
+              initial={{ opacity: 0, x: 80 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2 }}
+            >
+              <div className="relative">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeSlide}
+                    initial={{ opacity: 0, scale: 1.03 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.97 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <div className="relative rounded-2xl overflow-hidden aspect-[16/9] shadow-2xl shadow-black/60 ring-1 ring-white/[0.08]">
+                      <img
+                        src={slides[activeSlide].img}
+                        alt={slides[activeSlide].title}
+                        className="w-full h-full object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
+
+                      {/* Slide content overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10">
+                        <span className="text-blue-400 text-[10px] font-bold uppercase tracking-[0.3em] font-corporate mb-3 block">
+                          {slides[activeSlide].label}
+                        </span>
+                        <h3 className="text-2xl xl:text-3xl font-bold text-white mb-3 font-corporate leading-tight">
+                          {slides[activeSlide].title}
+                        </h3>
+                        <p className="text-white/50 text-sm leading-relaxed max-w-lg">
+                          {slides[activeSlide].desc}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Slide progress indicators */}
+                <div className="flex items-center gap-3 mt-6">
+                  {slides.map((slide, i) => (
+                    <button
+                      key={slide.label}
+                      onClick={() => { setActiveSlide(i); setProgress(0); }}
+                      className="group flex items-center gap-3"
+                    >
+                      <div className="relative h-[3px] w-16 bg-white/10 overflow-hidden rounded-full">
+                        <div
+                          className={`absolute inset-y-0 left-0 rounded-full ${
+                            i === activeSlide ? 'bg-white' : i < activeSlide ? 'bg-white/40' : 'bg-transparent'
+                          }`}
+                          style={{
+                            width: i === activeSlide ? `${progress}%` : i < activeSlide ? '100%' : '0%',
+                            transition: i === activeSlide ? 'width 80ms linear' : 'none',
+                          }}
+                        />
+                      </div>
+                    </button>
+                  ))}
+                  <span className="text-white/20 text-xs font-corporate font-bold ml-3 tabular-nums tracking-wider">
+                    {String(activeSlide + 1).padStart(2, '0')} — {String(slides.length).padStart(2, '0')}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Bottom infinite marquee */}
+        <div className="border-t border-white/[0.06] py-4 overflow-hidden">
+          <div className="flex animate-marquee whitespace-nowrap">
+            {[...marqueeItems, ...marqueeItems].map((item, i) => (
+              <span key={i} className="text-white/[0.12] text-[13px] font-corporate font-semibold tracking-[0.15em] uppercase mx-8 flex items-center gap-3 shrink-0">
+                <span className="w-1 h-1 rounded-full bg-white/20" />
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+        >
+          <span className="text-white/20 text-[9px] font-corporate font-bold uppercase tracking-[0.3em]">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+            className="w-5 h-8 rounded-full border border-white/15 flex items-start justify-center pt-1.5"
+          >
+            <div className="w-1 h-1.5 rounded-full bg-white/40" />
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+const MainHero2 = () => {
+  const capabilities = [
+    { icon: <ShieldCheck className="w-4 h-4" />, label: 'EASA / FAA Certified', detail: 'Full documentation & traceability' },
+    { icon: <Clock className="w-4 h-4" />, label: 'AOG in Under 4 Hours', detail: 'Emergency dispatch worldwide' },
+    { icon: <Globe className="w-4 h-4" />, label: '4 Continents Covered', detail: 'US, Mexico, Argentina, France' },
+  ];
+
+  return (
+    <section className="relative h-screen overflow-hidden bg-vento-navy">
+      {/* Local video background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source src={heroVideo} type="video/quicktime" />
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Cinematic overlays — navy-tinted to match brand */}
+      <div className="absolute inset-0 z-[2] bg-vento-navy/35" />
+      <div className="absolute inset-0 z-[2] bg-gradient-to-r from-vento-navy/70 via-vento-navy/25 to-transparent" />
+      <div className="absolute inset-0 z-[2] bg-gradient-to-t from-vento-navy/75 via-transparent to-vento-navy/40" />
+      {/* Film grain texture */}
+      <div className="absolute inset-0 z-[2] opacity-[0.04] mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")' }} />
+
+      {/* Main content */}
+      <div className="relative z-10 h-full flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex-grow flex items-center pt-40 pb-16">
+          <div className="w-full">
+            {/* Eyebrow */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="mb-4"
+            >
+              <div className="flex items-center gap-4">
+                <div className="h-px w-16 bg-gradient-to-r from-white/60 to-transparent" />
+                <span className="text-white/60 text-[11px] font-corporate font-bold uppercase tracking-[0.3em]">
+                  Powering Global Aviation
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Headline */}
+            <motion.h2
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.15 }}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-corporate font-bold text-white leading-[0.9] tracking-tighter mb-10 max-w-5xl"
+              style={{ textShadow: '2px 4px 20px rgba(0, 0, 0, 0.3), 0px 8px 40px rgba(0, 0, 0, 0.15)' }}
+            >
+              Where every
+              <br />
+              part{' '}
+              <span className="relative inline-block">
+                <span className="relative z-10">matters</span>
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
+                  className="absolute bottom-2 md:bottom-3 left-0 right-0 h-3 md:h-4 bg-blue-500/30 origin-left -z-0"
+                />
+              </span>
+              <span className="text-white/30">.</span>
+            </motion.h2>
+
+            {/* Subtext */}
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-white/40 text-lg sm:text-xl leading-relaxed max-w-xl mb-12 font-light"
+            >
+              From sourcing to delivery, we provide the certified components that keep the world's fleets flying safely and on schedule.
+            </motion.p>
+
+            {/* CTAs + Capabilities — single row */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.55 }}
+              className="flex flex-wrap items-center gap-5"
+            >
+              <a
+                href="#rfq"
+                className="group relative bg-white text-vento-navy px-10 py-5 font-corporate font-bold text-xs uppercase tracking-[0.15em] inline-flex items-center gap-3 overflow-hidden hover:shadow-2xl hover:shadow-vento-navy/20 transition-shadow"
+              >
+                <span className="relative z-10">Request A Quote</span>
+                <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1.5 transition-transform" />
+                <div className="absolute inset-0 bg-vento-navy/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              </a>
+              <a
+                href="#products"
+                className="group px-10 py-5 font-corporate font-bold text-xs uppercase tracking-[0.15em] text-white/70 border border-white/10 hover:border-white/25 hover:text-white hover:bg-white/[0.04] transition-all inline-flex items-center gap-3"
+              >
+                View Inventory
+                <ChevronRight size={16} className="opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+              </a>
+
+              {/* Divider */}
+              <div className="hidden lg:block h-10 w-px bg-white/15 mx-1" />
+
+              {/* Capability items inline */}
+              {capabilities.map((cap, i) => (
+                <motion.div
+                  key={cap.label}
+                  initial={{ opacity: 0, x: 10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.65 + i * 0.08 }}
+                  className="hidden lg:flex items-center gap-2.5 cursor-default group"
+                >
+                  <div className="text-blue-400/70 group-hover:text-blue-400 transition-colors">{cap.icon}</div>
+                  <div className="flex flex-col">
+                    <span className="text-white/80 text-[11px] font-bold font-corporate tracking-wide leading-tight group-hover:text-white transition-colors">{cap.label}</span>
+                    <span className="text-white/25 text-[10px] leading-tight">{cap.detail}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="border-t border-white/[0.08] py-5 flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <span className="text-white/20 text-[10px] font-corporate font-bold uppercase tracking-[0.3em]">Trusted Worldwide</span>
+            <div className="h-3 w-px bg-white/15" />
+            {['Boeing', 'Airbus', 'Embraer', 'Rolls-Royce'].map((name) => (
+              <span key={name} className="text-white/20 text-xs font-corporate font-semibold tracking-wider hidden sm:inline">{name}</span>
+            ))}
+          </div>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            className="flex flex-col items-center gap-1"
+          >
+            <div className="w-5 h-8 rounded-full border border-white/10 flex items-start justify-center pt-1.5">
+              <div className="w-0.5 h-1.5 rounded-full bg-white/30" />
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const HeroPremium = () => {
+  const stats = [
+    { value: "500+", label: "Airlines Served", icon: <Globe className="w-4 h-4" /> },
+    { value: "10K+", label: "Parts in Stock", icon: <Box className="w-4 h-4" /> },
+    { value: "<4hr", label: "AOG Response", icon: <Clock className="w-4 h-4" /> },
+  ];
+
+  return (
+    <section className="relative h-screen overflow-hidden bg-black">
+
+      {/* Video */}
+      <div className="absolute inset-0 z-0">
+        <video autoPlay muted loop playsInline className="w-full h-full object-cover scale-105">
+          <source src={heroVideo} type="video/quicktime" />
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Overlays */}
+      <div className="absolute inset-0 z-[1] bg-black/60" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black/75 via-black/35 to-transparent" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/85 via-transparent to-black/20" />
+      <div className="absolute inset-0 z-[1]" style={{ background: 'radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.45) 100%)' }} />
+
+      {/* Animated scan line */}
+      <motion.div
+        className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent z-[2] pointer-events-none"
+        animate={{ top: ['0%', '100%'] }}
+        transition={{ duration: 9, repeat: Infinity, ease: 'linear', repeatDelay: 5 }}
+      />
+
+      {/* Vertical editorial text — left rail */}
+      <div className="absolute left-5 top-0 bottom-0 z-10 hidden xl:flex items-center pointer-events-none">
+        <span
+          className="text-white/12 text-[9px] font-corporate font-bold uppercase tracking-[0.45em]"
+          style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+        >
+          Vento Aviation · Certified Aircraft Components · Global Reach
+        </span>
+      </div>
+
+      {/* Main content */}
+      <div className="relative z-10 h-full flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex-grow flex items-center">
+          <div className="w-full grid lg:grid-cols-5 gap-12 items-center pt-24">
+
+            {/* Left — headline + CTAs */}
+            <div className="lg:col-span-3">
+
+              {/* Live eyebrow */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.15 }}
+                className="flex items-center gap-3 mb-10"
+              >
+                <div className="relative flex items-center justify-center">
+                  <div className="w-2 h-2 rounded-full bg-green-400" />
+                  <motion.div
+                    className="absolute w-5 h-5 rounded-full bg-green-400/30"
+                    animate={{ scale: [1, 2, 1], opacity: [0.5, 0, 0.5] }}
+                    transition={{ duration: 2.5, repeat: Infinity }}
+                  />
+                </div>
+                <span className="text-white/45 text-[11px] font-corporate font-bold uppercase tracking-[0.28em]">
+                  Live AOG Support · 24/7 Global Dispatch
+                </span>
+              </motion.div>
+
+              {/* Headline — two-weight split */}
+              <div className="mb-10 overflow-hidden">
+                <div className="overflow-hidden mb-1">
+                  <motion.div
+                    initial={{ y: '110%' }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-6xl sm:text-7xl lg:text-8xl xl:text-[96px] font-corporate font-extralight text-white/60 tracking-tight leading-none"
+                  >
+                    KEEP YOUR
+                  </motion.div>
+                </div>
+                <div className="overflow-hidden">
+                  <motion.div
+                    initial={{ y: '110%' }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 1, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-6xl sm:text-7xl lg:text-8xl xl:text-[96px] font-corporate font-black text-white tracking-tight leading-none"
+                  >
+                    FLEET FLYING.
+                  </motion.div>
+                </div>
+              </div>
+
+              {/* Subtext */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="text-white/38 text-base sm:text-lg leading-relaxed max-w-lg mb-12 font-light"
+              >
+                Certified aircraft components sourced globally, delivered fast.
+                The partner airlines and MROs trust when it matters most.
+              </motion.p>
+
+              {/* CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="flex flex-wrap gap-4"
+              >
+                <a
+                  href="#contact"
+                  className="group relative bg-white text-vento-navy px-9 py-4 font-corporate font-bold text-xs uppercase tracking-[0.18em] inline-flex items-center gap-3 overflow-hidden hover:shadow-2xl hover:shadow-black/30 transition-shadow"
+                >
+                  <span className="relative z-10">Request A Quote</span>
+                  <ArrowRight size={14} className="relative z-10 group-hover:translate-x-1.5 transition-transform" />
+                  <div className="absolute inset-0 bg-vento-navy/6 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                </a>
+                <a
+                  href="#products"
+                  className="group px-9 py-4 font-corporate font-bold text-xs uppercase tracking-[0.18em] text-white/55 border border-white/12 hover:border-white/28 hover:text-white hover:bg-white/5 transition-all inline-flex items-center gap-3"
+                >
+                  Browse Inventory
+                  <ChevronRight size={14} className="opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                </a>
+              </motion.div>
+            </div>
+
+            {/* Right — glassmorphism stats card */}
+            <motion.div
+              initial={{ opacity: 0, x: 50, y: 20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 1.1, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              className="hidden lg:block lg:col-span-2"
+            >
+              <div className="bg-white/[0.06] backdrop-blur-2xl border border-white/[0.1] rounded-3xl overflow-hidden">
+                {/* Card header */}
+                <div className="px-8 pt-8 pb-6 border-b border-white/[0.08]">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="w-4 h-4 text-white/30" />
+                    <span className="text-white/30 text-[10px] font-corporate font-bold uppercase tracking-[0.3em]">
+                      At a Glance
+                    </span>
+                  </div>
+                </div>
+
+                {/* Stats rows */}
+                {stats.map((stat, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 1.2 + i * 0.1 }}
+                    className="px-8 py-6 flex items-center justify-between border-b border-white/[0.06] last:border-0"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-white/[0.07] border border-white/[0.1] flex items-center justify-center text-white/40">
+                        {stat.icon}
+                      </div>
+                      <span className="text-white/45 text-sm">{stat.label}</span>
+                    </div>
+                    <span className="text-white text-2xl font-black font-corporate">{stat.value}</span>
+                  </motion.div>
+                ))}
+
+                {/* Card CTA */}
+                <div className="px-8 py-6">
+                  <a
+                    href="#contact"
+                    className="w-full flex items-center justify-center gap-2 text-white/40 hover:text-white text-[11px] font-corporate font-bold uppercase tracking-widest transition-colors group"
+                  >
+                    Get a custom quote
+                    <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+
+        {/* Bottom certifications bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.3 }}
+          className="border-t border-white/[0.07] py-5 flex items-center justify-between gap-6"
+        >
+          <div className="flex items-center gap-6 flex-wrap">
+            <span className="text-white/18 text-[10px] font-corporate font-bold uppercase tracking-[0.35em]">Certified By</span>
+            <div className="h-3 w-px bg-white/10" />
+            {['FAA', 'EASA', 'AS9120', 'ISO 9001'].map((cert) => (
+              <span key={cert} className="text-white/30 hover:text-white/60 text-[11px] font-corporate font-bold tracking-wider transition-colors cursor-default">{cert}</span>
+            ))}
+          </div>
+          <motion.div
+            animate={{ y: [0, 7, 0] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+            className="shrink-0"
+          >
+            <div className="w-5 h-8 rounded-full border border-white/12 flex items-start justify-center pt-1.5">
+              <motion.div
+                className="w-0.5 h-2 rounded-full bg-white/35"
+                animate={{ opacity: [1, 0.2, 1], height: ['8px', '4px', '8px'] }}
+                transition={{ duration: 2.2, repeat: Infinity }}
+              />
+            </div>
+          </motion.div>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+};
+
 const Features = () => {
   const features = [
     {
       title: "Certified & Trusted Sources",
-      description: "We source all components exclusively from verified airlines, MROs, and approved suppliers.",
+      description: "We source all components exclusively from verified airlines, MROs, and FAA/EASA-approved suppliers — so you never have to question provenance.",
       icon: <ShieldCheck className="w-6 h-6" />,
     },
     {
       title: "Smart Pricing",
-      description: "By purchasing global surplus directly from operators, we offer highly competitive pricing.",
+      description: "By purchasing global surplus directly from operators, we cut out the middleman and pass the savings directly to you.",
       icon: <DollarSign className="w-6 h-6" />,
     },
     {
       title: "Guaranteed Quality",
-      description: "From sourcing to packaging, every step is handled in-house to ensure the highest standards.",
+      description: "From sourcing to packaging, every step is handled in-house. Each part is inspected, documented, and ready to fly.",
       icon: <Award className="w-6 h-6" />,
     },
     {
       title: "On-Time Delivery",
-      description: "Committed to delivery times to avoid interrupting your operations and keep you flying.",
+      description: "We understand AOG situations. Our logistics network is built to keep your aircraft in the air and your operations on schedule.",
       icon: <Clock className="w-6 h-6" />,
     },
   ];
 
+  const stats = [
+    { value: "500+", label: "Airlines Served" },
+    { value: "10K+", label: "Parts in Stock" },
+    { value: "98%", label: "On-Time Delivery" },
+  ];
+
   return (
-    <section className="py-24 bg-white">
+    <section className="py-28 bg-vento-navy overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-vento-navy mb-4">Why Choose Us</h2>
-          <div className="w-20 h-1.5 bg-vento-navy mx-auto rounded-full"></div>
+        <div className="grid lg:grid-cols-5 gap-16 items-start">
+
+          {/* Left — headline + stats */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="lg:col-span-2 lg:sticky lg:top-32"
+          >
+            <p className="text-white/50 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Why Vento</p>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 font-corporate">
+              The partner your fleet can rely on
+            </h2>
+            <p className="text-white/60 text-base leading-relaxed mb-12">
+              We combine global reach with rigorous quality standards to deliver aviation parts you can trust — on time, every time.
+            </p>
+
+            {/* Stats row */}
+            <div className="flex flex-col gap-6">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 + i * 0.12 }}
+                  viewport={{ once: true }}
+                  className="flex items-center gap-5"
+                >
+                  <div className="w-px h-12 bg-white/20" />
+                  <div>
+                    <p className="text-3xl font-bold text-white font-corporate">{stat.value}</p>
+                    <p className="text-white/50 text-sm">{stat.label}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right — feature cards 2x2 */}
+          <div className="lg:col-span-3 grid sm:grid-cols-2 gap-5">
+            {features.map((feature, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: idx * 0.1, ease: "easeOut" }}
+                viewport={{ once: true }}
+                whileHover={{ y: -6, backgroundColor: "rgba(255,255,255,0.07)" }}
+                className="group p-7 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 cursor-default"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center mb-5 text-white group-hover:bg-white/20 transition-colors duration-300">
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2 font-corporate">{feature.title}</h3>
+                <p className="text-white/55 text-sm leading-relaxed">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
         </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ y: -10 }}
-              className="p-8 rounded-3xl bg-vento-bg border border-vento-navy/5 hover:shadow-xl transition-all"
-            >
-              <div className="w-14 h-14 bg-vento-navy text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-vento-navy/20">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-bold text-vento-navy mb-3">{feature.title}</h3>
-              <p className="text-vento-navy/70 leading-relaxed">{feature.description}</p>
-            </motion.div>
-          ))}
+      </div>
+    </section>
+  );
+};
+
+const FeaturesLight = () => {
+  const features = [
+    {
+      title: "Certified & Trusted Sources",
+      description: "We source all components exclusively from verified airlines, MROs, and FAA/EASA-approved suppliers — so you never have to question provenance.",
+      icon: <ShieldCheck className="w-6 h-6" />,
+    },
+    {
+      title: "Smart Pricing",
+      description: "By purchasing global surplus directly from operators, we cut out the middleman and pass the savings directly to you.",
+      icon: <DollarSign className="w-6 h-6" />,
+    },
+    {
+      title: "Guaranteed Quality",
+      description: "From sourcing to packaging, every step is handled in-house. Each part is inspected, documented, and ready to fly.",
+      icon: <Award className="w-6 h-6" />,
+    },
+    {
+      title: "On-Time Delivery",
+      description: "We understand AOG situations. Our logistics network is built to keep your aircraft in the air and your operations on schedule.",
+      icon: <Clock className="w-6 h-6" />,
+    },
+  ];
+
+  const stats = [
+    { value: "500+", label: "Airlines Served" },
+    { value: "10K+", label: "Parts in Stock" },
+    { value: "98%", label: "On-Time Delivery" },
+  ];
+
+  return (
+    <section className="py-28 bg-vento-bg overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-5 gap-16 items-start">
+
+          {/* Left — headline + stats */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="lg:col-span-2 lg:sticky lg:top-32"
+          >
+            <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Why Vento</p>
+            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight mb-6 font-corporate">
+              The partner your fleet can rely on
+            </h2>
+            <p className="text-vento-navy/60 text-base leading-relaxed mb-12">
+              We combine global reach with rigorous quality standards to deliver aviation parts you can trust — on time, every time.
+            </p>
+
+            {/* Stats row */}
+            <div className="flex flex-col gap-6">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 + i * 0.12 }}
+                  viewport={{ once: true }}
+                  className="flex items-center gap-5"
+                >
+                  <div className="w-px h-12 bg-vento-navy/20" />
+                  <div>
+                    <p className="text-3xl font-bold text-vento-navy font-corporate">{stat.value}</p>
+                    <p className="text-vento-navy/50 text-sm">{stat.label}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right — feature cards 2x2 */}
+          <div className="lg:col-span-3 grid sm:grid-cols-2 gap-5">
+            {features.map((feature, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: idx * 0.1, ease: "easeOut" }}
+                viewport={{ once: true }}
+                whileHover={{ y: -6 }}
+                className="group p-7 rounded-3xl border border-vento-navy/10 bg-white hover:shadow-xl transition-all duration-300 cursor-default"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-vento-navy flex items-center justify-center mb-5 text-white shadow-lg shadow-vento-navy/20 group-hover:scale-110 transition-transform duration-300">
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-bold text-vento-navy mb-2 font-corporate">{feature.title}</h3>
+                <p className="text-vento-navy/60 text-sm leading-relaxed">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
         </div>
       </div>
     </section>
@@ -403,67 +1166,102 @@ const Features = () => {
 };
 
 const About = () => {
-  return (
-    <section id="about" className="py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="relative">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4 pt-12">
-                <img 
-                  src="https://images.unsplash.com/photo-1464037862646-647f1856d5ec?auto=format&fit=crop&q=80&w=600" 
-                  alt="Aviation 1" 
-                  className="rounded-3xl w-full aspect-[3/4] object-cover shadow-lg"
-                  referrerPolicy="no-referrer"
-                />
-                <img 
-                  src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&q=80&w=600" 
-                  alt="Aviation 2" 
-                  className="rounded-3xl w-full aspect-square object-cover shadow-lg"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="space-y-4">
-                <img 
-                  src="https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80&w=600" 
-                  alt="Aviation 3" 
-                  className="rounded-3xl w-full aspect-square object-cover shadow-lg"
-                  referrerPolicy="no-referrer"
-                />
-                <img 
-                  src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&q=80&w=600" 
-                  alt="Aviation 4" 
-                  className="rounded-3xl w-full aspect-[3/4] object-cover shadow-lg"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            </div>
-            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-vento-navy/5 rounded-full blur-3xl"></div>
-          </div>
+  const highlights = [
+    "FAA & EASA certified component sourcing",
+    "Direct access to OEMs and global MRO networks",
+    "In-house quality control from receipt to shipment",
+    "AOG support with same-day response capability",
+  ];
 
-          <div>
-            <div className="inline-block px-4 py-1.5 rounded-full bg-vento-navy/5 text-vento-navy font-bold text-sm mb-6">
-              ABOUT US
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-vento-navy mb-8 leading-tight">
-              Vento Aviation – A Trusted Global Supplier Of Certified Aviation Components.
-            </h2>
-            <div className="space-y-6 text-vento-navy/70 text-lg leading-relaxed">
+  return (
+    <section id="about" className="py-28 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Top label + headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-2xl mb-16"
+        >
+          <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">About Us</p>
+          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
+            A trusted global supplier of certified aviation components.
+          </h2>
+        </motion.div>
+
+        {/* Body: image left, content right */}
+        <div className="grid lg:grid-cols-5 gap-10 items-start">
+
+          {/* Image block — 3 cols */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="lg:col-span-3 relative"
+          >
+            {/* Main image */}
+            <img
+              src="https://images.unsplash.com/photo-1464037862646-647f1856d5ec?auto=format&fit=crop&q=80&w=1200"
+              alt="Vento Aviation operations"
+              className="rounded-3xl w-full aspect-[16/10] object-cover shadow-2xl"
+              referrerPolicy="no-referrer"
+            />
+            {/* Floating stat card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="absolute -bottom-6 -right-6 bg-vento-navy text-white rounded-2xl px-7 py-5 shadow-2xl"
+            >
+              <p className="text-3xl font-bold font-corporate">15+</p>
+              <p className="text-white/60 text-sm mt-0.5">Years of Industry Experience</p>
+            </motion.div>
+          </motion.div>
+
+          {/* Text block — 2 cols */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="lg:col-span-2 pt-4 lg:pt-8"
+          >
+            <div className="space-y-5 text-vento-navy/65 text-base leading-relaxed mb-10">
               <p>
                 VENTO Aviation is a global supplier specializing in sourcing, stocking, and delivering certified aircraft components for airlines, MROs, and aviation operators worldwide.
               </p>
               <p>
-                We maintain thousands of components in stock and have direct access to a broad network of OEMs and distributors, enabling us to supply everything from brand-new, factory-fresh parts to serviceable and overhauled components.
-              </p>
-              <p>
-                Our model is simple: you ask, we deliver. With a global partner network, strict quality assurance processes, and a strong focus on operational speed, we provide fast, reliable, and flexible support.
+                Our model is simple: you ask, we deliver. With a broad partner network, strict quality assurance, and a focus on operational speed — we keep your aircraft flying.
               </p>
             </div>
-            <button className="mt-10 flex items-center gap-2 text-vento-navy font-bold group">
-              LEARN MORE ABOUT OUR PROCESS 
-              <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
+
+            {/* Checklist highlights */}
+            <ul className="space-y-3 mb-10">
+              {highlights.map((item, i) => (
+                <motion.li
+                  key={i}
+                  initial={{ opacity: 0, x: 16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.15 + i * 0.09 }}
+                  viewport={{ once: true }}
+                  className="flex items-start gap-3 text-sm text-vento-navy/80"
+                >
+                  <CheckCircle2 className="w-5 h-5 text-vento-navy shrink-0 mt-0.5" />
+                  {item}
+                </motion.li>
+              ))}
+            </ul>
+
+            <button className="flex items-center gap-2 text-vento-navy font-bold font-corporate text-sm group">
+              LEARN MORE ABOUT OUR PROCESS
+              <ArrowRight className="group-hover:translate-x-2 transition-transform" size={18} />
             </button>
-          </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
@@ -472,53 +1270,288 @@ const About = () => {
 
 const Products = () => {
   const categories = [
-    { name: "Hydraulics", image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800", icon: <Settings /> },
-    { name: "Engine Parts", image: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&q=80&w=800", icon: <Wrench /> },
-    { name: "Landing Gear", image: "https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=800", icon: <Plane /> },
-    { name: "Airframe Parts", image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80&w=800", icon: <Box /> },
-    { name: "Instruments", image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&q=80&w=800", icon: <Gauge /> },
-    { name: "Surplus Purchase", image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800", icon: <DollarSign /> },
-    { name: "Hardware", image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800", icon: <Settings /> },
+    {
+      name: "Engine Parts",
+      description: "New, serviceable, and overhauled components for all major engine types.",
+      image: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&q=80&w=1200",
+      icon: <Wrench className="w-5 h-5" />,
+      featured: true,
+    },
+    {
+      name: "Hydraulics",
+      description: "Pumps, actuators, and system components from certified sources.",
+      image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
+      icon: <Settings className="w-5 h-5" />,
+    },
+    {
+      name: "Landing Gear",
+      description: "Structural and actuating components built to exacting tolerances.",
+      image: "https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=800",
+      icon: <Plane className="w-5 h-5" />,
+    },
+    {
+      name: "Airframe Parts",
+      description: "Structural panels, doors, and fuselage components for all platforms.",
+      image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80&w=800",
+      icon: <Box className="w-5 h-5" />,
+    },
+    {
+      name: "Instruments",
+      description: "Avionics, gauges, and flight deck instruments — certified and tested.",
+      image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&q=80&w=800",
+      icon: <Gauge className="w-5 h-5" />,
+    },
+    {
+      name: "Surplus Purchase",
+      description: "We buy airline and MRO surplus — fast valuation, competitive offers.",
+      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+      icon: <DollarSign className="w-5 h-5" />,
+    },
+    {
+      name: "Hardware",
+      description: "Fasteners, fittings, and consumables stocked for rapid dispatch.",
+      image: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?auto=format&fit=crop&q=80&w=800",
+      icon: <Settings className="w-5 h-5" />,
+    },
   ];
 
-  return (
-    <section id="products" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-          <div>
-            <h2 className="text-4xl font-bold text-vento-navy mb-4">Our Product Line</h2>
-            <p className="text-vento-navy/60 max-w-md">Comprehensive range of certified components for various aircraft systems.</p>
-          </div>
-          <button className="text-vento-navy font-bold flex items-center gap-2 border-b-2 border-vento-navy pb-1">
-            EXPLORE FULL CATALOG <ArrowRight size={18} />
-          </button>
-        </div>
+  const featured = categories[0];
+  const rest = categories.slice(1);
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categories.map((cat, idx) => (
+  return (
+    <section id="products" className="py-28 bg-vento-navy overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row justify-between items-end mb-14 gap-6"
+        >
+          <div>
+            <p className="text-white/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Product Line</p>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight font-corporate">
+              Components for every<br />aircraft system
+            </h2>
+          </div>
+          <button className="flex items-center gap-2 text-white/70 hover:text-white font-corporate font-bold text-sm border-b border-white/30 hover:border-white pb-1 transition-all shrink-0">
+            EXPLORE FULL CATALOG <ArrowRight size={16} />
+          </button>
+        </motion.div>
+
+        {/* Grid — featured (col-span-2) + 6 regular, all same fixed height */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+          {/* Featured card — spans 2 cols, same row height as regular cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="group relative col-span-2 rounded-3xl overflow-hidden h-64 cursor-pointer"
+          >
+            <img
+              src={featured.image}
+              alt={featured.name}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-7 flex items-end justify-between w-full">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white mb-3">
+                  {featured.icon}
+                </div>
+                <h3 className="text-xl font-bold text-white font-corporate">{featured.name}</h3>
+                <p className="text-white/60 text-sm mt-1 max-w-xs">{featured.description}</p>
+              </div>
+              <div className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300 shrink-0">
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Regular cards — same h-64 */}
+          {rest.map((cat, idx) => (
             <motion.div
               key={idx}
-              whileHover={{ scale: 1.02 }}
-              className="group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.08 + idx * 0.07 }}
+              viewport={{ once: true }}
+              className="group relative rounded-3xl overflow-hidden h-64 cursor-pointer"
             >
-              <img 
-                src={cat.image} 
-                alt={cat.name} 
+              <img
+                src={cat.image}
+                alt={cat.name}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-vento-navy via-vento-navy/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-              <div className="absolute bottom-0 left-0 p-8">
-                <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center text-white mb-4">
-                  {cat.icon}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+              <div className="absolute inset-0 p-5 flex flex-col justify-between">
+                <div className="w-9 h-9 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white self-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <ArrowRight className="w-4 h-4" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">{cat.name}</h3>
-                <p className="text-white/70 text-sm mt-2 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all">
-                  View certified components
-                </p>
+                <div>
+                  <div className="w-9 h-9 rounded-xl bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white mb-3">
+                    {cat.icon}
+                  </div>
+                  <h3 className="text-base font-bold text-white font-corporate leading-tight">{cat.name}</h3>
+                  <p className="text-white/55 text-xs mt-1 leading-relaxed translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    {cat.description}
+                  </p>
+                </div>
               </div>
             </motion.div>
           ))}
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const ProductsLight = () => {
+  const categories = [
+    {
+      name: "Engine Parts",
+      description: "New, serviceable, and overhauled components for all major engine types.",
+      image: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&q=80&w=1200",
+      icon: <Wrench className="w-5 h-5" />,
+      featured: true,
+    },
+    {
+      name: "Hydraulics",
+      description: "Pumps, actuators, and system components from certified sources.",
+      image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
+      icon: <Settings className="w-5 h-5" />,
+    },
+    {
+      name: "Landing Gear",
+      description: "Structural and actuating components built to exacting tolerances.",
+      image: "https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=800",
+      icon: <Plane className="w-5 h-5" />,
+    },
+    {
+      name: "Airframe Parts",
+      description: "Structural panels, doors, and fuselage components for all platforms.",
+      image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80&w=800",
+      icon: <Box className="w-5 h-5" />,
+    },
+    {
+      name: "Instruments",
+      description: "Avionics, gauges, and flight deck instruments — certified and tested.",
+      image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&q=80&w=800",
+      icon: <Gauge className="w-5 h-5" />,
+    },
+    {
+      name: "Surplus Purchase",
+      description: "We buy airline and MRO surplus — fast valuation, competitive offers.",
+      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+      icon: <DollarSign className="w-5 h-5" />,
+    },
+    {
+      name: "Hardware",
+      description: "Fasteners, fittings, and consumables stocked for rapid dispatch.",
+      image: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?auto=format&fit=crop&q=80&w=800",
+      icon: <Settings className="w-5 h-5" />,
+    },
+  ];
+
+  const featured = categories[0];
+  const rest = categories.slice(1);
+
+  return (
+    <section className="py-28 bg-vento-bg overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row justify-between items-end mb-14 gap-6"
+        >
+          <div>
+            <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Product Line</p>
+            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
+              Components for every<br />aircraft system
+            </h2>
+          </div>
+          <button className="flex items-center gap-2 text-vento-navy/60 hover:text-vento-navy font-corporate font-bold text-sm border-b border-vento-navy/30 hover:border-vento-navy pb-1 transition-all shrink-0">
+            EXPLORE FULL CATALOG <ArrowRight size={16} />
+          </button>
+        </motion.div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+          {/* Featured card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="group relative col-span-2 rounded-3xl overflow-hidden h-64 cursor-pointer shadow-lg"
+          >
+            <img
+              src={featured.image}
+              alt={featured.name}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-vento-navy/85 via-vento-navy/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-7 flex items-end justify-between w-full">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white mb-3">
+                  {featured.icon}
+                </div>
+                <h3 className="text-xl font-bold text-white font-corporate">{featured.name}</h3>
+                <p className="text-white/70 text-sm mt-1 max-w-xs">{featured.description}</p>
+              </div>
+              <div className="w-10 h-10 rounded-full bg-white/15 border border-white/25 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300 shrink-0">
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Regular cards */}
+          {rest.map((cat, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.08 + idx * 0.07 }}
+              viewport={{ once: true }}
+              className="group relative rounded-3xl overflow-hidden h-64 cursor-pointer shadow-md"
+            >
+              <img
+                src={cat.image}
+                alt={cat.name}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-vento-navy/80 via-vento-navy/10 to-transparent" />
+              <div className="absolute inset-0 p-5 flex flex-col justify-between">
+                <div className="w-9 h-9 rounded-xl bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white self-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-sm border border-white/25 flex items-center justify-center text-white mb-3">
+                    {cat.icon}
+                  </div>
+                  <h3 className="text-base font-bold text-white font-corporate leading-tight">{cat.name}</h3>
+                  <p className="text-white/60 text-xs mt-1 leading-relaxed translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    {cat.description}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+
         </div>
       </div>
     </section>
@@ -726,10 +1759,13 @@ export default function App() {
   return (
     <div className="font-sans">
       <Navbar />
-      <Hero />
+      <MainHero2 />
+      <HeroPremium />
       <Features />
+      <FeaturesLight />
       <About />
       <Products />
+      <ProductsLight />
       <RFQSection />
       <Footer />
     </div>
