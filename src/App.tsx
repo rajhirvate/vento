@@ -4,17 +4,18 @@
  */
 
 import React, { useState } from 'react';
-import { 
-  Plane, 
-  ShieldCheck, 
-  Clock, 
-  DollarSign, 
-  Award, 
-  ChevronRight, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Menu, 
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {
+  Plane,
+  ShieldCheck,
+  Clock,
+  DollarSign,
+  Award,
+  ChevronRight,
+  Mail,
+  Phone,
+  MapPin,
+  Menu,
   X,
   ArrowRight,
   CheckCircle2,
@@ -27,6 +28,10 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import logo from './assets/logo.png';
 import heroVideo from './assets/hero.mov';
+import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
+import EventsPage from './pages/EventsPage';
+import ResourcesPage from './pages/ResourcesPage';
 
 // --- Components ---
 
@@ -43,24 +48,24 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
+    { name: 'About', href: '/about' },
+    { name: 'Services', href: '/services' },
     { name: 'Inventory', href: '#products' },
-    { name: 'Events', href: '#events' },
-    { name: 'Resources', href: '#resources' },
+    { name: 'Events', href: '/events' },
+    { name: 'Resources', href: '/resources' },
     { name: 'News', href: '#news' },
     { name: 'Contact', href: '#contact' },
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-vento-navy/95 backdrop-blur-md shadow-xl py-2' : 'bg-transparent py-4'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'pb-2 px-4 sm:px-6 lg:px-8' : 'py-4'}`}>
+      <div className={`transition-all duration-500 ${isScrolled ? 'max-w-7xl mx-auto bg-vento-navy/95 backdrop-blur-md shadow-2xl rounded-b-3xl px-4 sm:px-6 lg:px-8' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'}`}>
         <div className="flex justify-between h-20 items-center">
           <div className="flex-shrink-0 flex items-center gap-2">
             <img src={logo} alt="Vento Aviation Logo" className="h-10 w-auto object-contain brightness-0 invert" />
           </div>
           
-          <div className="hidden md:flex flex-1 items-center justify-center space-x-12 font-corporate">
+          <div className="hidden lg:flex flex-1 items-center justify-center space-x-8 font-corporate">
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
@@ -72,7 +77,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          <div className="hidden md:block font-corporate">
+          <div className="hidden lg:block font-corporate">
             <a 
               href="#rfq" 
               className="bg-white text-vento-navy px-8 py-3.5 text-xs font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-white/90 transition-all border border-white/20"
@@ -81,7 +86,7 @@ const Navbar = () => {
             </a>
           </div>
 
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button onClick={() => setIsOpen(!isOpen)} className="text-white">
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -96,7 +101,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-vento-navy/95 backdrop-blur-xl border-b border-white/10 overflow-hidden"
+            className="lg:hidden bg-vento-navy/95 backdrop-blur-xl border-b border-white/10 overflow-hidden"
           >
             <div className="px-4 pt-2 pb-6 space-y-1 font-corporate">
               {navLinks.map((link) => (
@@ -738,15 +743,6 @@ const MainHero2 = () => {
               <span key={name} className="text-white/20 text-xs font-corporate font-semibold tracking-wider hidden sm:inline">{name}</span>
             ))}
           </div>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            className="flex flex-col items-center gap-1"
-          >
-            <div className="w-5 h-8 rounded-full border border-white/10 flex items-start justify-center pt-1.5">
-              <div className="w-0.5 h-1.5 rounded-full bg-white/30" />
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>
@@ -754,97 +750,94 @@ const MainHero2 = () => {
 };
 
 const FeaturesLight = () => {
-  const features = [
-    {
-      title: "Certified & Trusted Sources",
-      description: "We source all components exclusively from verified airlines, MROs, and FAA/EASA-approved suppliers — so you never have to question provenance.",
-      icon: <ShieldCheck className="w-6 h-6" />,
-    },
-    {
-      title: "Smart Pricing",
-      description: "By purchasing global surplus directly from operators, we cut out the middleman and pass the savings directly to you.",
-      icon: <DollarSign className="w-6 h-6" />,
-    },
-    {
-      title: "Guaranteed Quality",
-      description: "From sourcing to packaging, every step is handled in-house. Each part is inspected, documented, and ready to fly.",
-      icon: <Award className="w-6 h-6" />,
-    },
-    {
-      title: "On-Time Delivery",
-      description: "We understand AOG situations. Our logistics network is built to keep your aircraft in the air and your operations on schedule.",
-      icon: <Clock className="w-6 h-6" />,
-    },
+  const buyers = [
+    "3 competitive offers on every RFQ — full transparency, no hidden fees.",
+    "FAA & EASA accepted parts sourced directly from airlines, MROs, and OEMs.",
+    "24-hour average response time on all part number requests.",
+    "Receive, evaluate, and inspect offers with our team guiding each step.",
+    "Complete documentation and provenance on every single transaction.",
   ];
 
-  const stats = [
-    { value: "500+", label: "Airlines Served" },
-    { value: "10K+", label: "Parts in Stock" },
-    { value: "98%", label: "On-Time Delivery" },
+  const sellers = [
+    "Transparent consignment process — you know exactly what you're getting.",
+    "Fast valuations and competitive offers, typically within 48 hours.",
+    "We close quickly and effectively — no delays, no drawn-out negotiations.",
+    "Global buyer network across 3+ continents — maximum exposure for your inventory.",
+    "NDX, OEM, and PMA parts all welcome — we work with all surplus types.",
   ];
 
   return (
     <section className="py-28 bg-vento-bg overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-5 gap-16 items-start">
 
-          {/* Left — headline + stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-14"
+        >
+          <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Why Vento</p>
+          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate max-w-2xl">
+            Built for the parts market.<br />Trusted on both sides.
+          </h2>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-5">
+
+          {/* For Buyers */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.1 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 lg:sticky lg:top-32"
+            className="bg-white border border-vento-navy/8 rounded-3xl p-10"
           >
-            <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Why Vento</p>
-            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight mb-6 font-corporate">
-              The partner your fleet can rely on
-            </h2>
-            <p className="text-vento-navy/60 text-base leading-relaxed mb-12">
-              We combine global reach with rigorous quality standards to deliver aviation parts you can trust — on time, every time.
-            </p>
-
-            {/* Stats row */}
-            <div className="flex flex-col gap-6">
-              {stats.map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 + i * 0.12 }}
-                  viewport={{ once: true }}
-                  className="flex items-center gap-5"
-                >
-                  <div className="w-px h-12 bg-vento-navy/20" />
-                  <div>
-                    <p className="text-3xl font-bold text-vento-navy font-corporate">{stat.value}</p>
-                    <p className="text-vento-navy/50 text-sm">{stat.label}</p>
-                  </div>
-                </motion.div>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-2xl bg-vento-navy flex items-center justify-center text-white shadow-md shadow-vento-navy/20">
+                <Plane className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-[10px] text-vento-navy/40 uppercase tracking-widest font-bold font-corporate">For Buyers</p>
+                <p className="text-vento-navy font-bold font-corporate text-sm">Airlines · MROs · Operators</p>
+              </div>
+            </div>
+            <div className="space-y-4">
+              {buyers.map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-4 h-4 text-vento-navy shrink-0 mt-0.5" />
+                  <p className="text-vento-navy/65 text-sm leading-relaxed">{item}</p>
+                </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Right — feature cards 2x2 */}
-          <div className="lg:col-span-3 grid sm:grid-cols-2 gap-5">
-            {features.map((feature, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: idx * 0.1, ease: "easeOut" }}
-                viewport={{ once: true }}
-                whileHover={{ y: -6 }}
-                className="group p-7 rounded-3xl border border-vento-navy/10 bg-white hover:shadow-xl transition-all duration-300 cursor-default"
-              >
-                <div className="w-12 h-12 rounded-2xl bg-vento-navy flex items-center justify-center mb-5 text-white shadow-lg shadow-vento-navy/20 group-hover:scale-110 transition-transform duration-300">
-                  {feature.icon}
+          {/* For Sellers */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="bg-vento-navy rounded-3xl p-10"
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center text-white">
+                <DollarSign className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold font-corporate">For Sellers</p>
+                <p className="text-white font-bold font-corporate text-sm">Airlines · Lessors · Brokers</p>
+              </div>
+            </div>
+            <div className="space-y-4">
+              {sellers.map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-4 h-4 text-white/60 shrink-0 mt-0.5" />
+                  <p className="text-white/65 text-sm leading-relaxed">{item}</p>
                 </div>
-                <h3 className="text-lg font-bold text-vento-navy mb-2 font-corporate">{feature.title}</h3>
-                <p className="text-vento-navy/60 text-sm leading-relaxed">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </motion.div>
 
         </div>
       </div>
@@ -853,103 +846,74 @@ const FeaturesLight = () => {
 };
 
 const About = () => {
-  const highlights = [
-    "FAA & EASA certified component sourcing",
-    "Direct access to OEMs and global MRO networks",
-    "In-house quality control from receipt to shipment",
-    "AOG support with same-day response capability",
+  const stats = [
+    { value: "500+", label: "Airlines Served" },
+    { value: "10K+", label: "Parts in Stock" },
+    { value: "15+", label: "Years of Experience" },
   ];
 
   return (
-    <section id="about" className="py-28 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="bg-white overflow-hidden">
+      <div className="grid lg:grid-cols-2 min-h-[600px]">
 
-        {/* Top label + headline */}
+        {/* Left — full-bleed image */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-2xl mb-16"
+          className="relative min-h-[400px] lg:min-h-full"
         >
-          <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">About Us</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
-            A trusted global supplier of certified aviation components.
-          </h2>
+          <img
+            src="https://images.unsplash.com/photo-1520437358207-323b43b50729?auto=format&fit=crop&q=80&w=1200"
+            alt="Vento Aviation warehouse operations"
+            className="absolute inset-0 w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-vento-navy/30" />
         </motion.div>
 
-        {/* Body: image left, content right */}
-        <div className="grid lg:grid-cols-5 gap-10 items-start">
+        {/* Right — content */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="flex flex-col justify-center px-10 py-20 lg:px-16"
+        >
+          <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">About Us</p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-vento-navy leading-tight font-corporate mb-8">
+            A trusted global supplier of certified aviation components.
+          </h2>
 
-          {/* Image block — 3 cols */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="lg:col-span-3 relative"
-          >
-            {/* Main image */}
-            <img
-              src="https://images.unsplash.com/photo-1464037862646-647f1856d5ec?auto=format&fit=crop&q=80&w=1200"
-              alt="Vento Aviation operations"
-              className="rounded-3xl w-full aspect-[16/10] object-cover shadow-2xl"
-              referrerPolicy="no-referrer"
-            />
-            {/* Floating stat card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="absolute -bottom-6 -right-6 bg-vento-navy text-white rounded-2xl px-7 py-5 shadow-2xl"
-            >
-              <p className="text-3xl font-bold font-corporate">15+</p>
-              <p className="text-white/60 text-sm mt-0.5">Years of Industry Experience</p>
-            </motion.div>
-          </motion.div>
+          <div className="space-y-4 text-vento-navy/60 text-base leading-relaxed mb-10">
+            <p>
+              VENTO Aviation is a global supplier specializing in sourcing, stocking, and delivering certified aircraft components for airlines, MROs, and aviation operators worldwide.
+            </p>
+            <p>
+              We maintain thousands of components in stock with direct access to a broad network of OEMs and distributors — supplying everything from brand-new factory-fresh parts to serviceable and overhauled components.
+            </p>
+            <p>
+              Our model is simple: you ask, we deliver. With a global partner network, strict quality assurance, and a strong focus on operational speed, we provide fast, reliable, and flexible support.
+            </p>
+          </div>
 
-          {/* Text block — 2 cols */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="lg:col-span-2 pt-4 lg:pt-8"
-          >
-            <div className="space-y-5 text-vento-navy/65 text-base leading-relaxed mb-10">
-              <p>
-                VENTO Aviation is a global supplier specializing in sourcing, stocking, and delivering certified aircraft components for airlines, MROs, and aviation operators worldwide.
-              </p>
-              <p>
-                Our model is simple: you ask, we deliver. With a broad partner network, strict quality assurance, and a focus on operational speed — we keep your aircraft flying.
-              </p>
-            </div>
+          {/* Stats row */}
+          <div className="flex gap-8 mb-10 border-t border-vento-navy/10 pt-8">
+            {stats.map((stat, i) => (
+              <div key={i}>
+                <p className="text-2xl font-bold text-vento-navy font-corporate">{stat.value}</p>
+                <p className="text-vento-navy/45 text-xs mt-0.5">{stat.label}</p>
+              </div>
+            ))}
+          </div>
 
-            {/* Checklist highlights */}
-            <ul className="space-y-3 mb-10">
-              {highlights.map((item, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: 16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: 0.15 + i * 0.09 }}
-                  viewport={{ once: true }}
-                  className="flex items-start gap-3 text-sm text-vento-navy/80"
-                >
-                  <CheckCircle2 className="w-5 h-5 text-vento-navy shrink-0 mt-0.5" />
-                  {item}
-                </motion.li>
-              ))}
-            </ul>
+          <a href="#contact" className="inline-flex items-center gap-2 text-vento-navy font-bold font-corporate text-xs uppercase tracking-widest group w-fit border-b border-vento-navy/30 hover:border-vento-navy pb-1 transition-colors">
+            Learn more about our process
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </a>
+        </motion.div>
 
-            <button className="flex items-center gap-2 text-vento-navy font-bold font-corporate text-sm group">
-              LEARN MORE ABOUT OUR PROCESS
-              <ArrowRight className="group-hover:translate-x-2 transition-transform" size={18} />
-            </button>
-          </motion.div>
-
-        </div>
       </div>
     </section>
   );
@@ -1099,6 +1063,398 @@ const ProductsLight = () => {
     </section>
   );
 };
+
+const Services = () => {
+  const services = [
+    {
+      icon: <Globe className="w-5 h-5" />,
+      title: "Parts Sourcing & Acquisition",
+      description: "We identify, locate, and acquire certified parts from our global network of airlines, MROs, and approved suppliers.",
+    },
+    {
+      icon: <ChevronRight className="w-5 h-5" />,
+      title: "Parts Sales & RFQ Fulfillment",
+      description: "Submit your RFQ and receive competitive offers within 24 hours, backed by full documentation and traceability.",
+    },
+    {
+      icon: <Box className="w-5 h-5" />,
+      title: "Inventory Management",
+      description: "We manage and optimize surplus inventory on behalf of operators, maximising returns and minimising ground time.",
+    },
+    {
+      icon: <DollarSign className="w-5 h-5" />,
+      title: "LOT Purchasing",
+      description: "We purchase full aircraft lots and component packages directly from airlines and lessors worldwide.",
+    },
+    {
+      icon: <Award className="w-5 h-5" />,
+      title: "Expo & Direct Sales",
+      description: "Meet our team at major aviation expos to source parts, close deals, and build lasting partnerships.",
+    },
+    {
+      icon: <Settings className="w-5 h-5" />,
+      title: "Advisory & Consulting",
+      description: "With over 20 years of combined experience, we provide strategic guidance on procurement and surplus sales.",
+    },
+  ];
+
+  return (
+    <section id="services" className="py-28 bg-vento-bg overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16"
+        >
+          <div>
+            <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">What We Do</p>
+            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
+              How we work<br />with you
+            </h2>
+          </div>
+          <p className="text-vento-navy/55 text-base max-w-sm leading-relaxed">
+            End-to-end aviation parts solutions — from sourcing and sales to consulting and direct purchasing.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {services.map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.07 }}
+              viewport={{ once: true }}
+              className="group bg-white border border-vento-navy/8 rounded-3xl p-8 hover:shadow-lg transition-shadow duration-300"
+            >
+              <div className="w-10 h-10 rounded-2xl bg-vento-navy flex items-center justify-center text-white mb-6 shadow-md shadow-vento-navy/20">
+                {s.icon}
+              </div>
+              <h3 className="text-base font-bold text-vento-navy font-corporate mb-3">{s.title}</h3>
+              <p className="text-vento-navy/55 text-sm leading-relaxed">{s.description}</p>
+              <div className="mt-6 flex items-center gap-2 text-vento-navy/40 group-hover:text-vento-navy text-xs font-bold font-corporate uppercase tracking-widest transition-colors">
+                Learn more <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Presence = () => {
+  const locations = [
+    { country: "United States", city: "Miami, FL", detail: "Americas Headquarters" },
+    { country: "France", city: "Paris", detail: "European Operations" },
+    { country: "Argentina", city: "Buenos Aires", detail: "South America Hub" },
+    { country: "Philippines", city: "Manila", detail: "Asia Pacific" },
+  ];
+
+  return (
+    <section className="py-28 bg-vento-navy overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-16 text-center"
+        >
+          <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Global Reach</p>
+          <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight font-corporate">
+            Wherever you operate,<br />we're already there
+          </h2>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {locations.map((loc, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="border border-white/10 rounded-3xl p-8 hover:bg-white/5 transition-colors duration-300"
+            >
+              <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center mb-6">
+                <MapPin className="w-4 h-4 text-white/60" />
+              </div>
+              <p className="text-white/35 text-[10px] font-bold uppercase tracking-widest font-corporate mb-1">{loc.detail}</p>
+              <h3 className="text-white text-xl font-bold font-corporate mb-1">{loc.country}</h3>
+              <p className="text-white/40 text-sm">{loc.city}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-16 pt-10 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
+          <p className="text-white/40 text-sm max-w-md text-center sm:text-left leading-relaxed">
+            With boots on the ground across 4 countries and a partner network spanning every major aviation market.
+          </p>
+          <a href="#contact" className="flex items-center gap-2 text-white font-bold font-corporate text-xs uppercase tracking-widest border-b border-white/30 hover:border-white pb-1 transition-colors whitespace-nowrap">
+            Get in touch <ArrowRight className="w-4 h-4" />
+          </a>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+};
+
+const Compliance = () => {
+  const certs = [
+    {
+      icon: <ShieldCheck className="w-6 h-6" />,
+      title: "ASA-100 Certified",
+      description: "Our operations fully comply with the Aviation Suppliers Association's highest quality standard for aircraft parts distributors.",
+    },
+    {
+      icon: <Award className="w-6 h-6" />,
+      title: "Quality Manual",
+      description: "Every transaction follows documented quality processes — from initial sourcing through final delivery and sign-off.",
+    },
+    {
+      icon: <CheckCircle2 className="w-6 h-6" />,
+      title: "Full Traceability",
+      description: "Complete part history, documentation, and certification records maintained and available for every component we handle.",
+    },
+    {
+      icon: <Clock className="w-6 h-6" />,
+      title: "Audit Ready",
+      description: "Our facilities, records, and processes are maintained to be ready for regulatory and customer audits at any time.",
+    },
+  ];
+
+  return (
+    <section className="py-28 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-16 max-w-2xl"
+        >
+          <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Standards</p>
+          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
+            Compliance you<br />can verify
+          </h2>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {certs.map((cert, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              viewport={{ once: true }}
+              className="p-8 rounded-3xl bg-vento-bg border border-vento-navy/8"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-vento-navy flex items-center justify-center text-white mb-6 shadow-md shadow-vento-navy/20">
+                {cert.icon}
+              </div>
+              <h3 className="text-base font-bold text-vento-navy font-corporate mb-3">{cert.title}</h3>
+              <p className="text-vento-navy/55 text-sm leading-relaxed">{cert.description}</p>
+            </motion.div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+const Events = () => {
+  const events = [
+    {
+      name: "NAI HELI-EXPO 2026",
+      location: "Las Vegas, NV — USA",
+      date: "March 2026",
+      description: "The world's largest helicopter industry event. Find us on the floor connecting with operators, MROs, and suppliers.",
+    },
+    {
+      name: "MRO AMERICAS 2026",
+      location: "Atlanta, GA — USA",
+      date: "April 2026",
+      description: "North America's premier MRO event. We'll be available for meetings, sourcing discussions, and live inventory reviews.",
+    },
+    {
+      name: "LABACE 2026",
+      location: "São Paulo — Brazil",
+      date: "August 2026",
+      description: "Latin America's leading aviation business event. Meet the Vento team to explore parts sourcing and surplus sales.",
+    },
+  ];
+
+  return (
+    <section id="events" className="py-28 bg-vento-navy overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14"
+        >
+          <div>
+            <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Events</p>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight font-corporate">
+              Meet us at<br />the next expo
+            </h2>
+          </div>
+          <a href="#contact" className="flex items-center gap-2 text-white/50 hover:text-white font-bold font-corporate text-xs uppercase tracking-widest border-b border-white/20 hover:border-white pb-1 transition-all whitespace-nowrap">
+            View all events & stay tuned <ArrowRight className="w-4 h-4" />
+          </a>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-5">
+          {events.map((ev, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="border border-white/10 rounded-3xl p-8 hover:bg-white/5 transition-colors duration-300 flex flex-col"
+            >
+              <div className="flex items-center justify-between mb-8">
+                <span className="text-white/30 text-[10px] font-bold uppercase tracking-widest font-corporate">{ev.date}</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest font-corporate text-white/30 border border-white/15 rounded-full px-3 py-1">Upcoming</span>
+              </div>
+              <h3 className="text-xl font-bold text-white font-corporate mb-2">{ev.name}</h3>
+              <p className="text-white/40 text-xs font-corporate font-semibold uppercase tracking-wider mb-4 flex items-center gap-2">
+                <MapPin className="w-3 h-3" /> {ev.location}
+              </p>
+              <p className="text-white/50 text-sm leading-relaxed flex-1">{ev.description}</p>
+              <div className="mt-8 flex items-center gap-2 text-white/30 hover:text-white text-xs font-bold font-corporate uppercase tracking-widest transition-colors cursor-pointer group">
+                Book a meeting <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+const News = () => {
+  const articles = [
+    {
+      tag: "Company News",
+      date: "March 2026",
+      title: "Vento Aviation completes LOT acquisition from European flag carrier",
+      excerpt: "A significant surplus purchase further strengthens our inventory across narrow-body and wide-body categories.",
+    },
+    {
+      tag: "Industry",
+      date: "February 2026",
+      title: "ASA-100 certification renewed following comprehensive quality audit",
+      excerpt: "Our commitment to quality and traceability was reaffirmed as we successfully passed our annual ASA-100 review.",
+    },
+    {
+      tag: "Global",
+      date: "January 2026",
+      title: "Global aircraft parts demand reaches record high ahead of summer season",
+      excerpt: "Airlines accelerating fleet reactivations are driving unprecedented demand for serviceable and overhauled components.",
+    },
+    {
+      tag: "Company News",
+      date: "December 2025",
+      title: "Vento expands Philippines operations with new local partnerships",
+      excerpt: "Our Asia Pacific presence grows as we formalise relationships with key regional MROs and operators.",
+    },
+  ];
+
+  return (
+    <section id="news" className="py-28 bg-vento-bg overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14"
+        >
+          <div>
+            <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Latest News</p>
+            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
+              From Vento &<br />the aviation world
+            </h2>
+          </div>
+          <a href="#" className="flex items-center gap-2 text-vento-navy/50 hover:text-vento-navy font-bold font-corporate text-xs uppercase tracking-widest border-b border-vento-navy/20 hover:border-vento-navy pb-1 transition-all whitespace-nowrap">
+            View all news <ArrowRight className="w-4 h-4" />
+          </a>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-5">
+          {articles.map((article, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              viewport={{ once: true }}
+              className="group bg-white border border-vento-navy/8 rounded-3xl p-8 hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <span className="text-[10px] font-bold uppercase tracking-widest font-corporate text-vento-navy/40 border border-vento-navy/15 rounded-full px-3 py-1">{article.tag}</span>
+                <span className="text-vento-navy/30 text-xs font-corporate">{article.date}</span>
+              </div>
+              <h3 className="text-base font-bold text-vento-navy font-corporate mb-3 leading-snug group-hover:text-vento-navy/80 transition-colors">{article.title}</h3>
+              <p className="text-vento-navy/50 text-sm leading-relaxed">{article.excerpt}</p>
+              <div className="mt-6 flex items-center gap-2 text-vento-navy/30 group-hover:text-vento-navy text-xs font-bold font-corporate uppercase tracking-widest transition-colors">
+                Read more <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+const BrochureCTA = () => (
+  <section className="py-24 bg-vento-navy">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="flex flex-col md:flex-row items-center justify-between gap-10"
+      >
+        <div>
+          <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Company Overview</p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight font-corporate">
+            Everything about Vento.<br />One document.
+          </h2>
+        </div>
+        <a
+          href="#"
+          className="group shrink-0 flex items-center gap-3 bg-white text-vento-navy px-10 py-5 font-corporate font-bold text-xs uppercase tracking-[0.15em] hover:bg-white/90 transition-colors rounded-full shadow-xl shadow-black/20"
+        >
+          Download our brochure <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </a>
+      </motion.div>
+    </div>
+  </section>
+);
 
 const RFQSection = () => {
   const [formData, setFormData] = useState({
@@ -1297,16 +1653,36 @@ const Footer = () => {
   );
 };
 
-export default function App() {
+function HomePage() {
   return (
     <div className="font-sans">
       <Navbar />
       <MainHero2 />
+      <Services />
       <FeaturesLight />
       <About />
+      <Presence />
+      <Compliance />
       <ProductsLight />
+      <Events />
+      <News />
+      <BrochureCTA />
       <RFQSection />
       <Footer />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/resources" element={<ResourcesPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
