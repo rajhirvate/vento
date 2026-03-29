@@ -21,45 +21,8 @@ import { motion } from 'motion/react';
 import logo from './assets/logo.png';
 import { Link } from 'react-router-dom';
 import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
-const NavbarAlt = () => {
-  const [isScrolled, setIsScrolled] = React.useState(false);
-
-  React.useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const links = [
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Inventory', href: '#products' },
-    { name: 'Contact', href: '#contact' },
-  ];
-
-  return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white/90 backdrop-blur-xl shadow-lg shadow-vento-navy/5 py-2' : 'bg-transparent py-6'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          <Link to="/">
-            <img src={logo} alt="Vento Aviation" className={`h-9 w-auto object-contain transition-all duration-300 ${isScrolled ? '' : 'brightness-0 invert'}`} />
-          </Link>
-          <div className="hidden md:flex items-center gap-10 font-body">
-            {links.map((l) => (
-              <a key={l.name} href={l.href} className={`text-sm font-medium transition-colors ${isScrolled ? 'text-vento-navy/70 hover:text-vento-navy' : 'text-white/70 hover:text-white'}`}>
-                {l.name}
-              </a>
-            ))}
-          </div>
-          <a href="#contact" className={`hidden md:inline-flex items-center gap-2 px-7 py-3 text-[11px] font-body font-bold uppercase tracking-[0.12em] transition-all ${isScrolled ? 'bg-vento-navy text-white hover:bg-vento-navy/90' : 'bg-white text-vento-navy hover:bg-white/90'} rounded-full`}>
-            Get In Touch
-          </a>
-        </div>
-      </div>
-    </nav>
-  );
-};
 
 const HeroPremium = () => (
   <section className="relative min-h-screen flex items-end overflow-hidden bg-vento-navy">
@@ -548,7 +511,7 @@ const ContactSection = () => {
 export default function NewHeroPage() {
   return (
     <div className="font-body">
-      <NavbarAlt />
+      <Navbar transparent />
       <HeroPremium />
       <TrustStrip />
       <GlobalLogisticsBoard />
