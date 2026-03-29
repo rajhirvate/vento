@@ -54,7 +54,7 @@ const Hero = () => (
     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-3xl">
         <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-6">Educational Resources</p>
-        <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight font-corporate mb-6">
+        <h1 className="text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6">
           Aviation knowledge, clearly explained.
         </h1>
         <p className="text-white/50 text-lg leading-relaxed">
@@ -95,7 +95,7 @@ const ResourceCard = ({ resource, index }: { resource: typeof resources[0]; inde
         </div>
       </div>
 
-      <h3 className="text-base font-bold text-vento-navy font-corporate leading-snug mb-3 flex-1">{resource.title}</h3>
+      <h3 className="text-base font-bold text-vento-navy font-display leading-snug mb-3 flex-1">{resource.title}</h3>
 
       {/* Short summary */}
       <p className="text-vento-navy/55 text-sm leading-relaxed mb-5">{resource.short}</p>
@@ -248,7 +248,7 @@ const CTA = () => (
       >
         <div className="max-w-xl">
           <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Still have questions?</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight font-corporate mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight font-display mb-4">
             Talk to a specialist.
           </h2>
           <p className="text-white/50 text-base leading-relaxed">

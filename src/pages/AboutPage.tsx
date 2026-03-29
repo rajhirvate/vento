@@ -33,7 +33,7 @@ const Hero = () => (
         transition={{ duration: 0.8 }}
       >
         <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-6">About Vento Aviation</p>
-        <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight font-corporate mb-8 max-w-4xl">
+        <h1 className="text-5xl lg:text-7xl font-display font-bold text-white leading-tight mb-8 max-w-4xl">
           6 months old.<br />Decades of experience.
         </h1>
         <p className="text-white/50 text-xl leading-relaxed max-w-2xl">
@@ -58,7 +58,7 @@ const CompanyStory = () => (
           viewport={{ once: true }}
         >
           <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Our Story</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate mb-8">
+          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-display mb-8">
             Why Vento was built.
           </h2>
           <div className="space-y-5 text-vento-navy/60 text-base leading-relaxed">
@@ -111,7 +111,7 @@ const MissionVision = () => (
         className="text-center mb-16"
       >
         <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Purpose</p>
-        <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight font-corporate">
+        <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight font-display">
           Mission & Vision
         </h2>
       </motion.div>
@@ -177,7 +177,7 @@ const TeamStats = () => {
             viewport={{ once: true }}
           >
             <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">The Team</p>
-            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate mb-8">
+            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-display mb-8">
               People who know aviation from the inside.
             </h2>
             <p className="text-vento-navy/60 text-base leading-relaxed mb-10">
@@ -276,7 +276,7 @@ const Offices = () => {
           className="mb-14"
         >
           <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Where We Are</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
+          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-display">
             Office locations
           </h2>
         </motion.div>
@@ -301,7 +301,7 @@ const Offices = () => {
                 )}
               </div>
               <p className={`text-[10px] font-bold uppercase tracking-widest font-corporate mb-1 ${i === 0 ? 'text-white/40' : 'text-vento-navy/40'}`}>{loc.detail}</p>
-              <h3 className={`text-xl font-bold font-corporate mb-1 ${i === 0 ? 'text-white' : 'text-vento-navy'}`}>{loc.country}</h3>
+              <h3 className={`text-xl font-bold font-display mb-1 ${i === 0 ? 'text-white' : 'text-vento-navy'}`}>{loc.country}</h3>
               <p className={`text-sm mb-6 ${i === 0 ? 'text-white/50' : 'text-vento-navy/50'}`}>{loc.city}</p>
               <div className={`border-t pt-6 space-y-3 ${i === 0 ? 'border-white/10' : 'border-vento-navy/8'}`}>
                 <div className="flex items-center gap-2">
@@ -340,7 +340,7 @@ const PageCTA = () => (
       >
         <div>
           <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Get Started</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight font-corporate">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight font-display">
             Ready to work together?
           </h2>
         </div>

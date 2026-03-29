@@ -22,7 +22,7 @@ const Hero = () => (
         className="max-w-3xl"
       >
         <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-6">Events & Expos</p>
-        <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight font-corporate mb-6">
+        <h1 className="text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6">
           Meet us where aviation happens.
         </h1>
         <p className="text-white/50 text-lg leading-relaxed">
@@ -72,7 +72,7 @@ const UpcomingExpos = () => {
           className="mb-14"
         >
           <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">On the Calendar</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
+          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-display">
             Upcoming expos
           </h2>
         </motion.div>
@@ -98,7 +98,7 @@ const UpcomingExpos = () => {
               {/* Details */}
               <div className="lg:col-span-3">
                 <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <h3 className="text-xl font-bold text-vento-navy font-corporate">{expo.name}</h3>
+                  <h3 className="text-xl font-bold text-vento-navy font-display">{expo.name}</h3>
                   <span className="text-[10px] font-bold uppercase tracking-widest font-corporate text-vento-navy/40 border border-vento-navy/15 rounded-full px-3 py-1">Upcoming</span>
                 </div>
                 <div className="flex flex-wrap gap-4 mb-4">
@@ -168,7 +168,7 @@ const PastGallery = () => {
         >
           <div>
             <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Past Events</p>
-            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
+            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-display">
               Expo gallery
             </h2>
           </div>
@@ -192,7 +192,7 @@ const PastGallery = () => {
                   <Calendar className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-vento-navy font-bold font-corporate">{gallery.event}</h3>
+                  <h3 className="text-vento-navy font-bold font-display">{gallery.event}</h3>
                   <p className="text-vento-navy/40 text-xs flex items-center gap-1.5">
                     <MapPin className="w-3 h-3" /> {gallery.location} · {gallery.year}
                   </p>
@@ -236,7 +236,7 @@ const ExpoCTA = () => (
       >
         <div className="max-w-xl">
           <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Attending an Expo?</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight font-corporate mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight font-display mb-4">
             Schedule a meeting at our booth.
           </h2>
           <p className="text-white/50 text-base leading-relaxed">

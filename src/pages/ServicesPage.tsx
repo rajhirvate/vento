@@ -37,7 +37,7 @@ const Hero = () => (
           transition={{ duration: 0.8 }}
         >
           <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-6">Services</p>
-          <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight font-corporate mb-6">
+          <h1 className="text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6">
             Everything your operation needs. One partner.
           </h1>
           <p className="text-white/50 text-lg leading-relaxed">
@@ -121,7 +121,7 @@ const ServiceCards = () => {
           className="mb-14"
         >
           <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">What We Offer</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate max-w-2xl">
+          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-display max-w-2xl">
             Our services, in detail.
           </h2>
         </motion.div>
@@ -139,7 +139,7 @@ const ServiceCards = () => {
               <div className="w-12 h-12 rounded-2xl bg-vento-navy flex items-center justify-center text-white mb-6 shadow-md shadow-vento-navy/20">
                 {s.icon}
               </div>
-              <h3 className="text-lg font-bold text-vento-navy font-corporate mb-3">{s.title}</h3>
+              <h3 className="text-lg font-bold text-vento-navy font-display mb-3">{s.title}</h3>
               <p className="text-vento-navy/55 text-sm leading-relaxed mb-6 flex-1">{s.description}</p>
 
               <ul className="space-y-2 mb-8">
@@ -202,7 +202,7 @@ const WhyVentoBar = () => {
           className="text-center mb-14"
         >
           <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Why Vento</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-white font-corporate">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white font-display">
             What sets us apart.
           </h2>
         </motion.div>
@@ -220,7 +220,7 @@ const WhyVentoBar = () => {
               <div className="w-10 h-10 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center text-white mb-5">
                 {d.icon}
               </div>
-              <h3 className="text-white font-bold font-corporate mb-3">{d.title}</h3>
+              <h3 className="text-white font-bold font-display mb-3">{d.title}</h3>
               <p className="text-white/45 text-sm leading-relaxed">{d.description}</p>
             </motion.div>
           ))}
@@ -244,7 +244,7 @@ const PageCTA = () => (
       >
         <div className="max-w-xl">
           <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Get In Touch</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-vento-navy leading-tight font-corporate mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-vento-navy leading-tight font-display mb-4">
             Have a specific requirement?<br />Talk to our team.
           </h2>
           <p className="text-vento-navy/55 text-base leading-relaxed">

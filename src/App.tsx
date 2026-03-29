@@ -28,6 +28,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import logo from './assets/logo.png';
 import heroVideo from './assets/hero.mov';
+import aviationPartsVideo from './assets/Aviation part video.mp4';
 import NewHeroPage from './NewHeroPage';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -685,7 +686,7 @@ const FeaturesLight = () => {
           className="mb-14"
         >
           <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Why Vento</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate max-w-2xl">
+          <h2 className="text-4xl lg:text-5xl font-display font-bold text-vento-navy leading-tight max-w-2xl">
             Built for the parts market.<br />Trusted on both sides.
           </h2>
         </motion.div>
@@ -761,22 +762,25 @@ const About = () => {
 
   return (
     <section id="about" className="bg-white overflow-hidden">
-      <div className="grid lg:grid-cols-2 min-h-[600px]">
+      <div className="grid lg:grid-cols-2 min-h-[420px]">
 
-        {/* Left — full-bleed image */}
+        {/* Left — full-bleed video */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="relative min-h-[400px] lg:min-h-full"
+          className="relative min-h-[280px] lg:min-h-full overflow-hidden"
         >
-          <img
-            src="https://images.unsplash.com/photo-1520437358207-323b43b50729?auto=format&fit=crop&q=80&w=1200"
-            alt="Vento Aviation warehouse operations"
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
             className="absolute inset-0 w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
+          >
+            <source src={aviationPartsVideo} type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-vento-navy/30" />
         </motion.div>
 
@@ -786,10 +790,10 @@ const About = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="flex flex-col justify-center px-10 py-20 lg:px-16"
+          className="flex flex-col justify-center px-10 py-12 lg:px-16"
         >
           <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">About Us</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-vento-navy leading-tight font-corporate mb-8">
+          <h2 className="text-3xl lg:text-4xl font-display font-bold text-vento-navy leading-tight mb-8">
             A trusted global supplier of certified aviation components.
           </h2>
 
@@ -809,7 +813,7 @@ const About = () => {
           <div className="flex gap-8 mb-10 border-t border-vento-navy/10 pt-8">
             {stats.map((stat, i) => (
               <div key={i}>
-                <p className="text-2xl font-bold text-vento-navy font-corporate">{stat.value}</p>
+                <p className="text-2xl font-display font-bold text-vento-navy">{stat.value}</p>
                 <p className="text-vento-navy/45 text-xs mt-0.5">{stat.label}</p>
               </div>
             ))}
@@ -890,7 +894,7 @@ const ProductsLight = () => {
         >
           <div>
             <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Product Line</p>
-            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
+            <h2 className="text-4xl lg:text-5xl font-display font-bold text-vento-navy leading-tight">
               Components for every<br />aircraft system
             </h2>
           </div>
@@ -922,7 +926,7 @@ const ProductsLight = () => {
                 <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white mb-3">
                   {featured.icon}
                 </div>
-                <h3 className="text-xl font-bold text-white font-corporate">{featured.name}</h3>
+                <h3 className="text-xl font-display font-bold text-white">{featured.name}</h3>
                 <p className="text-white/70 text-sm mt-1 max-w-xs">{featured.description}</p>
               </div>
               <div className="w-10 h-10 rounded-full bg-white/15 border border-white/25 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300 shrink-0">
@@ -956,7 +960,7 @@ const ProductsLight = () => {
                   <div className="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-sm border border-white/25 flex items-center justify-center text-white mb-3">
                     {cat.icon}
                   </div>
-                  <h3 className="text-base font-bold text-white font-corporate leading-tight">{cat.name}</h3>
+                  <h3 className="text-base font-display font-bold text-white leading-tight">{cat.name}</h3>
                   <p className="text-white/60 text-xs mt-1 leading-relaxed translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                     {cat.description}
                   </p>
@@ -1018,7 +1022,7 @@ const Services = () => {
         >
           <div>
             <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">What We Do</p>
-            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
+            <h2 className="text-4xl lg:text-5xl font-display font-bold text-vento-navy leading-tight">
               How we work<br />with you
             </h2>
           </div>
@@ -1040,7 +1044,7 @@ const Services = () => {
               <div className="w-10 h-10 rounded-2xl bg-vento-navy flex items-center justify-center text-white mb-6 shadow-md shadow-vento-navy/20">
                 {s.icon}
               </div>
-              <h3 className="text-base font-bold text-vento-navy font-corporate mb-3">{s.title}</h3>
+              <h3 className="text-base font-display font-bold text-vento-navy mb-3">{s.title}</h3>
               <p className="text-vento-navy/55 text-sm leading-relaxed">{s.description}</p>
               <div className="mt-6 flex items-center gap-2 text-vento-navy/40 group-hover:text-vento-navy text-xs font-bold font-corporate uppercase tracking-widest transition-colors">
                 Learn more <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
@@ -1073,7 +1077,7 @@ const Presence = () => {
           className="mb-16 text-center"
         >
           <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Global Reach</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight font-corporate">
+          <h2 className="text-4xl lg:text-5xl font-display font-bold text-white leading-tight">
             Wherever you operate,<br />we're already there
           </h2>
         </motion.div>
@@ -1092,7 +1096,7 @@ const Presence = () => {
                 <MapPin className="w-4 h-4 text-white/60" />
               </div>
               <p className="text-white/35 text-[10px] font-bold uppercase tracking-widest font-corporate mb-1">{loc.detail}</p>
-              <h3 className="text-white text-xl font-bold font-corporate mb-1">{loc.country}</h3>
+              <h3 className="text-white text-xl font-display font-bold mb-1">{loc.country}</h3>
               <p className="text-white/40 text-sm">{loc.city}</p>
             </motion.div>
           ))}
@@ -1154,7 +1158,7 @@ const Compliance = () => {
           className="mb-16 max-w-2xl"
         >
           <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Standards</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
+          <h2 className="text-4xl lg:text-5xl font-display font-bold text-vento-navy leading-tight">
             Compliance you<br />can verify
           </h2>
         </motion.div>
@@ -1172,7 +1176,7 @@ const Compliance = () => {
               <div className="w-12 h-12 rounded-2xl bg-vento-navy flex items-center justify-center text-white mb-6 shadow-md shadow-vento-navy/20">
                 {cert.icon}
               </div>
-              <h3 className="text-base font-bold text-vento-navy font-corporate mb-3">{cert.title}</h3>
+              <h3 className="text-base font-display font-bold text-vento-navy mb-3">{cert.title}</h3>
               <p className="text-vento-navy/55 text-sm leading-relaxed">{cert.description}</p>
             </motion.div>
           ))}
@@ -1218,7 +1222,7 @@ const Events = () => {
         >
           <div>
             <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Events</p>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight font-corporate">
+            <h2 className="text-4xl lg:text-5xl font-display font-bold text-white leading-tight">
               Meet us at<br />the next expo
             </h2>
           </div>
@@ -1241,7 +1245,7 @@ const Events = () => {
                 <span className="text-white/30 text-[10px] font-bold uppercase tracking-widest font-corporate">{ev.date}</span>
                 <span className="text-[10px] font-bold uppercase tracking-widest font-corporate text-white/30 border border-white/15 rounded-full px-3 py-1">Upcoming</span>
               </div>
-              <h3 className="text-xl font-bold text-white font-corporate mb-2">{ev.name}</h3>
+              <h3 className="text-xl font-display font-bold text-white mb-2">{ev.name}</h3>
               <p className="text-white/40 text-xs font-corporate font-semibold uppercase tracking-wider mb-4 flex items-center gap-2">
                 <MapPin className="w-3 h-3" /> {ev.location}
               </p>
@@ -1299,7 +1303,7 @@ const News = () => {
         >
           <div>
             <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Latest News</p>
-            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
+            <h2 className="text-4xl lg:text-5xl font-display font-bold text-vento-navy leading-tight">
               From Vento &<br />the aviation world
             </h2>
           </div>
@@ -1322,7 +1326,7 @@ const News = () => {
                 <span className="text-[10px] font-bold uppercase tracking-widest font-corporate text-vento-navy/40 border border-vento-navy/15 rounded-full px-3 py-1">{article.tag}</span>
                 <span className="text-vento-navy/30 text-xs font-corporate">{article.date}</span>
               </div>
-              <h3 className="text-base font-bold text-vento-navy font-corporate mb-3 leading-snug group-hover:text-vento-navy/80 transition-colors">{article.title}</h3>
+              <h3 className="text-base font-display font-bold text-vento-navy mb-3 leading-snug group-hover:text-vento-navy/80 transition-colors">{article.title}</h3>
               <p className="text-vento-navy/50 text-sm leading-relaxed">{article.excerpt}</p>
               <div className="mt-6 flex items-center gap-2 text-vento-navy/30 group-hover:text-vento-navy text-xs font-bold font-corporate uppercase tracking-widest transition-colors">
                 Read more <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
@@ -1348,7 +1352,7 @@ const BrochureCTA = () => (
       >
         <div>
           <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Company Overview</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight font-corporate">
+          <h2 className="text-3xl lg:text-4xl font-display font-bold text-white leading-tight">
             Everything about Vento.<br />One document.
           </h2>
         </div>
@@ -1382,7 +1386,7 @@ const RFQSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
           <div>
-            <h2 className="text-4xl font-bold text-vento-navy mb-8">Contact Us</h2>
+            <h2 className="text-4xl font-display font-bold text-vento-navy mb-8">Contact Us</h2>
             <p className="text-vento-navy/70 text-lg mb-12">
               Have a specific requirement or need a custom quote? Our team is ready to assist you 24/7 with your aviation parts needs.
             </p>
@@ -1439,7 +1443,7 @@ const RFQSection = () => {
           </div>
 
           <div id="rfq" className="bg-white p-10 rounded-[2.5rem] shadow-2xl shadow-vento-navy/10 border border-vento-navy/5">
-            <h3 className="text-3xl font-bold text-vento-navy mb-2">Request A Quote</h3>
+            <h3 className="text-3xl font-display font-bold text-vento-navy mb-2">Request A Quote</h3>
             <p className="text-vento-navy/60 mb-8 text-sm uppercase tracking-widest font-semibold">RFQ FORM</p>
             
             <form onSubmit={handleSubmit} className="space-y-6">
