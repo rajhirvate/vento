@@ -11,6 +11,7 @@ import {
   Users,
   Globe,
   Clock,
+  MessageSquare,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import logo from '../assets/logo.png';
@@ -218,6 +219,150 @@ const TeamStats = () => {
   );
 };
 
+// ─── Meet the Team ─────────────────────────────────────────────────────────
+
+const MeetTheTeam = () => {
+  const team = [
+    {
+      name: 'Frank Cohen',
+      title: 'Chief Revenue Officer',
+      location: 'Brooklyn, NY, USA',
+      phones: ['929-425-0076', '347-893-6131'],
+      email: 'Frank@ventoaviation.com',
+      initials: 'FC',
+    },
+    {
+      name: 'Erik Pastor',
+      title: 'Operations Manager',
+      location: 'Brooklyn, NY, USA',
+      phones: ['929-425-0075 ext 101'],
+      email: 'Erikp@ventoaviation.com',
+      initials: 'EP',
+    },
+    {
+      name: 'Shawn Killeen',
+      title: 'New Business Development',
+      location: 'Brooklyn, NY, USA',
+      phones: ['929-425-0078', '708-476-6576'],
+      email: 'Shawn@ventoaviation.com',
+      initials: 'SK',
+    },
+    {
+      name: 'Ruth Zilberstein',
+      title: 'New Business Development',
+      location: 'Mexico City, Mexico',
+      phones: ['929-425-0078', '305-924-7233'],
+      email: 'Ruth@ventoaviation.com',
+      initials: 'RZ',
+    },
+  ];
+
+  return (
+    <section className="py-20 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Our People</p>
+          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
+            Meet the team
+          </h2>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {team.map((member, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.09 }}
+              viewport={{ once: true }}
+              className="group bg-vento-bg border border-vento-navy/8 rounded-3xl p-7 flex flex-col hover:shadow-lg hover:border-vento-navy/15 transition-all duration-300"
+            >
+              {/* Avatar */}
+              <div className="w-14 h-14 rounded-2xl bg-vento-navy flex items-center justify-center mb-5 shadow-md shadow-vento-navy/20">
+                <span className="text-white font-bold font-corporate text-base tracking-wide">{member.initials}</span>
+              </div>
+
+              {/* Name + title */}
+              <h3 className="text-vento-navy font-bold font-corporate text-lg leading-tight mb-1">{member.name}</h3>
+              <p className="text-vento-navy/45 text-xs font-semibold uppercase tracking-widest mb-5">{member.title}</p>
+
+              {/* Divider */}
+              <div className="border-t border-vento-navy/8 mb-5" />
+
+              {/* Contact details */}
+              <div className="space-y-2.5 flex-1">
+                {member.phones.map((phone, j) => (
+                  <a
+                    key={j}
+                    href={`tel:+1${phone.replace(/\D/g, '')}`}
+                    className="flex items-center gap-2.5 text-vento-navy/55 hover:text-vento-navy transition-colors group/link"
+                  >
+                    <div className="w-6 h-6 rounded-lg bg-vento-navy/6 flex items-center justify-center shrink-0">
+                      <Phone className="w-3 h-3" />
+                    </div>
+                    <span className="text-xs font-medium">{phone}</span>
+                  </a>
+                ))}
+                <a
+                  href={`mailto:${member.email}`}
+                  className="flex items-center gap-2.5 text-vento-navy/55 hover:text-vento-navy transition-colors"
+                >
+                  <div className="w-6 h-6 rounded-lg bg-vento-navy/6 flex items-center justify-center shrink-0">
+                    <Mail className="w-3 h-3" />
+                  </div>
+                  <span className="text-xs font-medium truncate">{member.email}</span>
+                </a>
+                <div className="flex items-center gap-2.5 text-vento-navy/40">
+                  <div className="w-6 h-6 rounded-lg bg-vento-navy/6 flex items-center justify-center shrink-0">
+                    <MapPin className="w-3 h-3" />
+                  </div>
+                  <span className="text-xs">{member.location}</span>
+                </div>
+              </div>
+
+              {/* CTA */}
+              <a
+                href={`mailto:${member.email}`}
+                className="mt-6 flex items-center justify-center gap-2 w-full py-2.5 border border-vento-navy/15 rounded-xl text-vento-navy/60 hover:text-vento-navy hover:border-vento-navy/30 text-xs font-bold uppercase tracking-widest transition-all"
+              >
+                <MessageSquare className="w-3.5 h-3.5" /> Contact
+              </a>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* CAGE code badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mt-10 flex flex-wrap items-center gap-4"
+        >
+          <div className="flex items-center gap-3 bg-vento-bg border border-vento-navy/10 rounded-2xl px-5 py-3">
+            <ShieldCheck className="w-4 h-4 text-vento-navy/40" />
+            <span className="text-vento-navy/60 text-xs font-bold uppercase tracking-widest">CAGE Code</span>
+            <span className="text-vento-navy font-bold text-sm font-corporate">17DW6</span>
+          </div>
+          <div className="flex items-center gap-3 bg-vento-bg border border-vento-navy/10 rounded-2xl px-5 py-3">
+            <Globe className="w-4 h-4 text-vento-navy/40" />
+            <span className="text-vento-navy/60 text-xs font-bold uppercase tracking-widest">Website</span>
+            <span className="text-vento-navy font-bold text-sm font-corporate">ventoaviation.com</span>
+          </div>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+};
+
 // ─── Office Locations ──────────────────────────────────────────────────────
 
 const Offices = () => {
@@ -374,8 +519,8 @@ export default function AboutPage() {
       <CompanyStory />
       <MissionVision />
       <TeamStats />
+      <MeetTheTeam />
       <Offices />
-      <PageCTA />
       <Footer />
     </div>
   );

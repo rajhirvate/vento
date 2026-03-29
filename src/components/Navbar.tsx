@@ -11,7 +11,7 @@ const navHrefs: Record<string, string> = {
   Events: '/events',
   Resources: '/resources',
   News: '/#news',
-  Contact: '/#contact',
+  Contact: '/contact',
 };
 
 const megaMenus: Record<string, {
@@ -46,7 +46,7 @@ const megaMenus: Record<string, {
         ],
       },
     ],
-    highlight: { label: 'Request A Quote', desc: 'Submit your RFQ and our team will respond within 24 hours with competitive pricing.', href: '/#contact' },
+    highlight: { label: 'Request A Quote', desc: 'Submit your RFQ and our team will respond within 24 hours with competitive pricing.', href: '/request-for-quote' },
   },
   Inventory: {
     sections: [
@@ -75,7 +75,7 @@ const megaMenus: Record<string, {
         ],
       },
     ],
-    highlight: { label: 'Book a Meeting', desc: 'Schedule a one-on-one with our team at the next aviation expo near you.', href: '/#contact' },
+    highlight: { label: 'Book a Meeting', desc: 'Schedule a one-on-one with our team at the next aviation expo near you.', href: '/contact' },
   },
   Resources: {
     sections: [
@@ -109,7 +109,7 @@ const megaMenus: Record<string, {
       {
         heading: 'Get In Touch',
         items: [
-          { label: 'Request A Quote', desc: 'Submit your RFQ online', href: '/#contact', icon: <ArrowRight className="w-4 h-4" /> },
+          { label: 'Request A Quote', desc: 'Submit your RFQ online', href: '/request-for-quote', icon: <ArrowRight className="w-4 h-4" /> },
           { label: 'Call Us', desc: '+1 (929) 425-0075', href: 'tel:+19294250075', icon: <Phone className="w-4 h-4" /> },
           { label: 'Email Us', desc: 'sales@ventoaviation.com', href: 'mailto:sales@ventoaviation.com', icon: <Mail className="w-4 h-4" /> },
           { label: 'Our Locations', desc: 'USA, Mexico, Argentina, France', href: '/about', icon: <MapPin className="w-4 h-4" /> },
@@ -213,7 +213,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
               Pay Now
             </a>
             <a
-              href="/#contact"
+              href="/request-for-quote"
               className="bg-white text-vento-navy px-8 py-3.5 text-xs font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-white/90 transition-all border border-white/20"
             >
               Request A Quote
@@ -362,7 +362,7 @@ const Navbar = ({ transparent = false }: NavbarProps) => {
                   Pay Now
                 </a>
                 <a
-                  href="/#contact"
+                  href="/request-for-quote"
                   className="flex items-center justify-center gap-2 w-full text-center bg-white text-vento-navy px-6 py-4 text-xs font-bold uppercase tracking-wider rounded-full shadow-lg hover:bg-white/90 transition-all"
                   onClick={() => setIsOpen(false)}
                 >

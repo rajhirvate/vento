@@ -36,6 +36,8 @@ import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
 import EventsPage from './pages/EventsPage';
 import ResourcesPage from './pages/ResourcesPage';
+import QuotePage from './pages/QuotePage';
+import ContactPage from './pages/ContactPage';
 
 // --- Components ---
 
@@ -835,44 +837,51 @@ const ProductsLight = () => {
     {
       name: "Engine Parts",
       description: "New, serviceable, and overhauled components for all major engine types.",
-      image: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&q=80&w=1200",
+      // Jet engine turbine
+      image: "https://images.unsplash.com/photo-1556388158-158ea5ccacbd?auto=format&fit=crop&q=80&w=1200",
       icon: <Wrench className="w-5 h-5" />,
       featured: true,
     },
     {
       name: "Hydraulics",
       description: "Pumps, actuators, and system components from certified sources.",
-      image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
+      // Industrial hydraulic pipes/fittings
+      image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=800",
       icon: <Settings className="w-5 h-5" />,
     },
     {
       name: "Landing Gear",
       description: "Structural and actuating components built to exacting tolerances.",
-      image: "https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=800",
+      // Aircraft on runway showing landing gear
+      image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=800",
       icon: <Plane className="w-5 h-5" />,
     },
     {
       name: "Airframe Parts",
       description: "Structural panels, doors, and fuselage components for all platforms.",
-      image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80&w=800",
+      // Aircraft fuselage / maintenance hangar
+      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800",
       icon: <Box className="w-5 h-5" />,
     },
     {
       name: "Instruments",
       description: "Avionics, gauges, and flight deck instruments — certified and tested.",
-      image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&q=80&w=800",
+      // Cockpit instruments panel
+      image: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&q=80&w=800",
       icon: <Gauge className="w-5 h-5" />,
     },
     {
       name: "Surplus Purchase",
       description: "We buy airline and MRO surplus — fast valuation, competitive offers.",
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+      // Aviation parts warehouse / MRO facility
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800",
       icon: <DollarSign className="w-5 h-5" />,
     },
     {
       name: "Hardware",
       description: "Fasteners, fittings, and consumables stocked for rapid dispatch.",
-      image: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?auto=format&fit=crop&q=80&w=800",
+      // Metal fasteners / bolts close-up
+      image: "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&fit=crop&q=80&w=800",
       icon: <Settings className="w-5 h-5" />,
     },
   ];
@@ -920,8 +929,11 @@ const ProductsLight = () => {
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-vento-navy/85 via-vento-navy/20 to-transparent" />
-            <div className="absolute bottom-0 left-0 p-7 flex items-end justify-between w-full">
+            {/* Base gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-vento-navy/85 via-vento-navy/20 to-transparent transition-opacity duration-500" />
+            {/* Blur overlay on hover */}
+            <div className="absolute inset-0 backdrop-blur-sm bg-vento-navy/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute bottom-0 left-0 p-7 flex items-end justify-between w-full z-10">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white mb-3">
                   {featured.icon}
@@ -951,8 +963,11 @@ const ProductsLight = () => {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />
+              {/* Base gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-vento-navy/80 via-vento-navy/10 to-transparent" />
-              <div className="absolute inset-0 p-5 flex flex-col justify-between">
+              {/* Blur overlay on hover */}
+              <div className="absolute inset-0 backdrop-blur-sm bg-vento-navy/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 p-5 flex flex-col justify-between z-10">
                 <div className="w-9 h-9 rounded-xl bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white self-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <ArrowRight className="w-4 h-4" />
                 </div>
@@ -1171,13 +1186,14 @@ const Compliance = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               viewport={{ once: true }}
-              className="p-8 rounded-3xl bg-vento-bg border border-vento-navy/8"
+              whileHover={{ y: -6, transition: { duration: 0.22, ease: 'easeOut' } }}
+              className="group p-8 rounded-3xl bg-vento-bg border border-vento-navy/8 hover:bg-vento-navy hover:border-vento-navy hover:shadow-2xl hover:shadow-vento-navy/25 transition-colors duration-300 cursor-default"
             >
-              <div className="w-12 h-12 rounded-2xl bg-vento-navy flex items-center justify-center text-white mb-6 shadow-md shadow-vento-navy/20">
+              <div className="w-12 h-12 rounded-2xl bg-vento-navy group-hover:bg-white/15 flex items-center justify-center text-white mb-6 shadow-md shadow-vento-navy/20 group-hover:shadow-none transition-colors duration-300">
                 {cert.icon}
               </div>
-              <h3 className="text-lg font-bold text-vento-navy font-corporate mb-3">{cert.title}</h3>
-              <p className="text-vento-navy/55 text-base leading-relaxed">{cert.description}</p>
+              <h3 className="text-lg font-bold text-vento-navy group-hover:text-white font-corporate mb-3 transition-colors duration-300">{cert.title}</h3>
+              <p className="text-vento-navy/55 group-hover:text-white/60 text-base leading-relaxed transition-colors duration-300">{cert.description}</p>
             </motion.div>
           ))}
         </div>
@@ -1560,6 +1576,8 @@ export default function App() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/resources" element={<ResourcesPage />} />
+        <Route path="/request-for-quote" element={<QuotePage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/newheropage" element={<NewHeroPage />} />
       </Routes>
     </BrowserRouter>
