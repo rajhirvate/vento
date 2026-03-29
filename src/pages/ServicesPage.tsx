@@ -56,8 +56,8 @@ const Hero = () => (
           className="hidden lg:grid grid-cols-2 gap-3"
         >
           {['Parts Sourcing', 'RFQ Fulfillment', 'LOT Purchasing', 'Advisory'].map((s, i) => (
-            <div key={i} className="border border-white/10 rounded-2xl px-5 py-4">
-              <p className="text-white/60 text-sm font-corporate font-semibold">{s}</p>
+            <div key={i} className="bg-white/15 backdrop-blur-md border border-white/30 rounded-2xl px-5 py-4 hover:bg-white/25 transition-colors duration-200">
+              <p className="text-white text-sm font-corporate font-semibold">{s}</p>
             </div>
           ))}
         </motion.div>
