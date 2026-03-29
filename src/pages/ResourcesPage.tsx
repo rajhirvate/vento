@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search, ArrowRight, Menu, X, Play, BookOpen, FileText, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import logo from '../assets/logo.png';
+import Footer from '../components/Footer';
 
 // ─── Data ──────────────────────────────────────────────────────────────────
 
@@ -319,17 +320,6 @@ const CTA = () => (
   </section>
 );
 
-// ─── Footer ────────────────────────────────────────────────────────────────
-
-const Footer = () => (
-  <footer className="bg-vento-navy border-t border-white/10 py-10">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-      <img src={logo} alt="Vento Aviation" className="h-8 w-auto object-contain brightness-0 invert opacity-60" />
-      <p className="text-white/30 text-xs font-corporate">© {new Date().getFullYear()} Vento Aviation. All rights reserved.</p>
-      <Link to="/" className="text-white/30 hover:text-white/60 text-xs font-corporate transition-colors">← Back to Home</Link>
-    </div>
-  </footer>
-);
 
 // ─── Page ──────────────────────────────────────────────────────────────────
 
