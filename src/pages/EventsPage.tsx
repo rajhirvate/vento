@@ -10,7 +10,7 @@ import Navbar from '../components/Navbar';
 // ─── Hero ──────────────────────────────────────────────────────────────────
 
 const Hero = () => (
-  <section className="relative pt-40 pb-28 bg-vento-navy overflow-hidden">
+  <section className="relative pt-36 pb-20 bg-vento-navy overflow-hidden rounded-b-[3rem]">
     <div className="absolute inset-0 opacity-[0.03]"
       style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}
     />
@@ -22,7 +22,7 @@ const Hero = () => (
         className="max-w-3xl"
       >
         <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-6">Events & Expos</p>
-        <h1 className="text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6">
+        <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight font-corporate mb-6">
           Meet us where aviation happens.
         </h1>
         <p className="text-white/50 text-lg leading-relaxed">
@@ -61,7 +61,7 @@ const UpcomingExpos = () => {
   ];
 
   return (
-    <section className="py-28 bg-white">
+    <section className="pt-20 pb-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <motion.div
@@ -69,10 +69,10 @@ const UpcomingExpos = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-14"
+          className="mb-10"
         >
           <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">On the Calendar</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-display">
+          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
             Upcoming expos
           </h2>
         </motion.div>
@@ -98,7 +98,7 @@ const UpcomingExpos = () => {
               {/* Details */}
               <div className="lg:col-span-3">
                 <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <h3 className="text-xl font-bold text-vento-navy font-display">{expo.name}</h3>
+                  <h3 className="text-xl font-bold text-vento-navy font-corporate">{expo.name}</h3>
                   <span className="text-[10px] font-bold uppercase tracking-widest font-corporate text-vento-navy/40 border border-vento-navy/15 rounded-full px-3 py-1">Upcoming</span>
                 </div>
                 <div className="flex flex-wrap gap-4 mb-4">
@@ -156,7 +156,7 @@ const PastGallery = () => {
   ];
 
   return (
-    <section className="py-28 bg-vento-bg">
+    <section className="py-20 bg-vento-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <motion.div
@@ -164,11 +164,11 @@ const PastGallery = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10"
         >
           <div>
             <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Past Events</p>
-            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-display">
+            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
               Expo gallery
             </h2>
           </div>
@@ -192,7 +192,7 @@ const PastGallery = () => {
                   <Calendar className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-vento-navy font-bold font-display">{gallery.event}</h3>
+                  <h3 className="text-vento-navy font-bold font-corporate">{gallery.event}</h3>
                   <p className="text-vento-navy/40 text-xs flex items-center gap-1.5">
                     <MapPin className="w-3 h-3" /> {gallery.location} · {gallery.year}
                   </p>
@@ -225,7 +225,7 @@ const PastGallery = () => {
 // ─── Expo CTA ──────────────────────────────────────────────────────────────
 
 const ExpoCTA = () => (
-  <section className="py-24 bg-vento-navy">
+  <section className="py-16 bg-vento-navy">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
@@ -236,7 +236,7 @@ const ExpoCTA = () => (
       >
         <div className="max-w-xl">
           <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Attending an Expo?</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight font-display mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight font-corporate mb-4">
             Schedule a meeting at our booth.
           </h2>
           <p className="text-white/50 text-base leading-relaxed">

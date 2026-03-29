@@ -39,9 +39,7 @@ const Footer = () => {
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
           <p>© 2026 Vento Aviation. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-white transition-colors">Twitter</a>
-            <a href="#" className="hover:text-white transition-colors">Instagram</a>
+            <a href="https://www.linkedin.com/company/vento-aviation/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
           </div>
         </div>
       </div>

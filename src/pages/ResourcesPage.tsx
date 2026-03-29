@@ -47,14 +47,14 @@ const resources = [
 // ─── Hero ──────────────────────────────────────────────────────────────────
 
 const Hero = () => (
-  <section className="relative pt-40 pb-28 bg-vento-navy overflow-hidden">
+  <section className="relative pt-36 pb-20 bg-vento-navy overflow-hidden rounded-b-[3rem]">
     <div className="absolute inset-0 opacity-[0.03]"
       style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}
     />
     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-3xl">
         <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-6">Educational Resources</p>
-        <h1 className="text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6">
+        <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight font-corporate mb-6">
           Aviation knowledge, clearly explained.
         </h1>
         <p className="text-white/50 text-lg leading-relaxed">
@@ -95,7 +95,7 @@ const ResourceCard = ({ resource, index }: { resource: typeof resources[0]; inde
         </div>
       </div>
 
-      <h3 className="text-base font-bold text-vento-navy font-display leading-snug mb-3 flex-1">{resource.title}</h3>
+      <h3 className="text-base font-bold text-vento-navy font-corporate leading-snug mb-3 flex-1">{resource.title}</h3>
 
       {/* Short summary */}
       <p className="text-vento-navy/55 text-sm leading-relaxed mb-5">{resource.short}</p>
@@ -174,7 +174,7 @@ const ResourceLibrary = () => {
   }, [activeCategory, search]);
 
   return (
-    <section className="py-28 bg-vento-bg">
+    <section className="pt-20 pb-24 bg-vento-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Search + filter */}
@@ -237,7 +237,7 @@ const ResourceLibrary = () => {
 // ─── CTA ───────────────────────────────────────────────────────────────────
 
 const CTA = () => (
-  <section className="py-24 bg-vento-navy">
+  <section className="py-16 bg-vento-navy">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
@@ -248,7 +248,7 @@ const CTA = () => (
       >
         <div className="max-w-xl">
           <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Still have questions?</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight font-display mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight font-corporate mb-4">
             Talk to a specialist.
           </h2>
           <p className="text-white/50 text-base leading-relaxed">

@@ -21,7 +21,7 @@ import Navbar from '../components/Navbar';
 // ─── Hero ──────────────────────────────────────────────────────────────────
 
 const Hero = () => (
-  <section className="relative pt-40 pb-28 bg-vento-navy overflow-hidden">
+  <section className="relative pt-36 pb-20 bg-vento-navy overflow-hidden rounded-b-[3rem]">
     <div className="absolute inset-0 bg-gradient-to-br from-vento-navy via-vento-navy to-vento-navy/80" />
     <div className="absolute inset-0 opacity-[0.03]"
       style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}
@@ -32,11 +32,11 @@ const Hero = () => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-6">About Vento Aviation</p>
-        <h1 className="text-5xl lg:text-7xl font-display font-bold text-white leading-tight mb-8 max-w-4xl">
+        <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-5">About Vento Aviation</p>
+        <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight font-corporate mb-6 max-w-4xl">
           6 months old.<br />Decades of experience.
         </h1>
-        <p className="text-white/50 text-xl leading-relaxed max-w-2xl">
+        <p className="text-white/50 text-lg leading-relaxed max-w-2xl">
           Vento isn't built on the company's age — it's built on the combined expertise of a team that has spent careers moving parts around the world.
         </p>
       </motion.div>
@@ -47,7 +47,7 @@ const Hero = () => (
 // ─── Company Story ─────────────────────────────────────────────────────────
 
 const CompanyStory = () => (
-  <section className="py-28 bg-white overflow-hidden">
+  <section className="pt-20 pb-24 bg-white overflow-hidden">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid lg:grid-cols-2 gap-16 items-center">
 
@@ -58,7 +58,7 @@ const CompanyStory = () => (
           viewport={{ once: true }}
         >
           <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Our Story</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-display mb-8">
+          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate mb-8">
             Why Vento was built.
           </h2>
           <div className="space-y-5 text-vento-navy/60 text-base leading-relaxed">
@@ -101,17 +101,17 @@ const CompanyStory = () => (
 // ─── Mission & Vision ──────────────────────────────────────────────────────
 
 const MissionVision = () => (
-  <section className="py-28 bg-vento-navy overflow-hidden">
+  <section className="py-20 bg-vento-navy overflow-hidden">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="text-center mb-16"
+        className="text-center mb-12"
       >
         <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Purpose</p>
-        <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight font-display">
+        <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight font-corporate">
           Mission & Vision
         </h2>
       </motion.div>
@@ -166,7 +166,7 @@ const TeamStats = () => {
   const specialists = ['Licensed Pilots', 'Aviation Engineers', 'Certified Mechanics'];
 
   return (
-    <section className="py-28 bg-vento-bg overflow-hidden">
+    <section className="py-20 bg-vento-bg overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -177,7 +177,7 @@ const TeamStats = () => {
             viewport={{ once: true }}
           >
             <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">The Team</p>
-            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-display mb-8">
+            <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate mb-8">
               People who know aviation from the inside.
             </h2>
             <p className="text-vento-navy/60 text-base leading-relaxed mb-10">
@@ -265,7 +265,7 @@ const Offices = () => {
   ];
 
   return (
-    <section className="py-28 bg-white overflow-hidden">
+    <section className="py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <motion.div
@@ -273,10 +273,10 @@ const Offices = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-14"
+          className="mb-10"
         >
           <p className="text-vento-navy/40 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Where We Are</p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-display">
+          <h2 className="text-4xl lg:text-5xl font-bold text-vento-navy leading-tight font-corporate">
             Office locations
           </h2>
         </motion.div>
@@ -301,7 +301,7 @@ const Offices = () => {
                 )}
               </div>
               <p className={`text-[10px] font-bold uppercase tracking-widest font-corporate mb-1 ${i === 0 ? 'text-white/40' : 'text-vento-navy/40'}`}>{loc.detail}</p>
-              <h3 className={`text-xl font-bold font-display mb-1 ${i === 0 ? 'text-white' : 'text-vento-navy'}`}>{loc.country}</h3>
+              <h3 className={`text-xl font-bold font-corporate mb-1 ${i === 0 ? 'text-white' : 'text-vento-navy'}`}>{loc.country}</h3>
               <p className={`text-sm mb-6 ${i === 0 ? 'text-white/50' : 'text-vento-navy/50'}`}>{loc.city}</p>
               <div className={`border-t pt-6 space-y-3 ${i === 0 ? 'border-white/10' : 'border-vento-navy/8'}`}>
                 <div className="flex items-center gap-2">
@@ -329,7 +329,7 @@ const Offices = () => {
 // ─── Page CTA ──────────────────────────────────────────────────────────────
 
 const PageCTA = () => (
-  <section className="py-24 bg-vento-navy">
+  <section className="py-16 bg-vento-navy">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
@@ -340,7 +340,7 @@ const PageCTA = () => (
       >
         <div>
           <p className="text-white/30 uppercase tracking-widest text-xs font-corporate font-semibold mb-4">Get Started</p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight font-display">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight font-corporate">
             Ready to work together?
           </h2>
         </div>

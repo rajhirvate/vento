@@ -1,26 +1,17 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Microgramma";
-  src: url("./assets/MicrogrammaDBold.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   --color-vento-navy: #001A3F;
   --color-vento-bg: #FDFCFA;
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-corporate: "Poppins", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Microgramma", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Poppins", ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
   body {
     @apply bg-vento-bg text-vento-navy antialiased;
-    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
   }
 }
 
